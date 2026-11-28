@@ -2,6 +2,7 @@
 :root {
   --accent: #24737c;
   --accent-hover: #1e626a;
+  --ink-soft: #535f61;
 }
 
 :focus-visible {
@@ -118,6 +119,8 @@ body:not(:has(.hero)) .header .btn--ghost:hover { color: #fff; background: var(-
 .fleet-card__specs div { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2px 8px; border-bottom: 1px solid var(--line); padding: 4px 0; }
 .fleet-card__specs dt { color: var(--ink-soft); }
 .fleet-card__specs dd { margin: 0; }
+.card__body h2 { font: 500 26px/1.1 var(--serif); text-transform: uppercase; }
+.card:hover .card__body h2 { color: var(--accent); }
 .card__price s, .featured__price s { color: var(--ink-soft); opacity: 1; }
 @media (hover: none) { .fleet-card__interior { display: none; } }
 

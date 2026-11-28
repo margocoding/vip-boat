@@ -87,7 +87,7 @@ export function FleetCatalog({ section, query, language }: { section: FleetSecti
         </div>
         {items.length ? (
           <ul className="cards cards--3 fleet-grid">
-            {items.map(vessel => <li key={vessel.slug}><BoatCard vessel={vessel} language={language} /></li>)}
+            {items.map(vessel => <li key={vessel.slug}><BoatCard vessel={vessel} language={language} heading="h2" /></li>)}
           </ul>
         ) : (
           <div className="fleet-empty"><h2>{labels[15]}</h2><p>{labels[16]}</p><Link href={path} className="link-arrow">{labels[13]} →</Link></div>
