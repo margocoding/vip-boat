@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import { boats } from "@/data/boats";
-import { rub, vimg } from "@/lib/img";
+import { rub } from "@/lib/img";
 import { Photo } from "./Photo";
 
 /** «Популярный выбор»: вкладки по длине яхты, большая карточка справа */
@@ -20,12 +20,14 @@ export function FeaturedBoats() {
       </div>
 
       <div className="featured__body">
-        <ul className="featured__tabs" role="tablist" aria-label="Длина яхты">
+        <ul className="featured__tabs" aria-label="Длина яхты">
           {list.map((b, i) => (
             <li key={b.slug}>
               <button
-                role="tab"
-                aria-selected={i === active}
+                type="button"
+                aria-label={`${b.name} · ${b.length} м`}
+                aria-pressed={i === active}
+                aria-controls="featured-boat"
                 className={i === active ? "is-active" : ""}
                 onClick={() => setActive(i)}
               >
@@ -36,9 +38,9 @@ export function FeaturedBoats() {
           ))}
         </ul>
 
-        <article className="featured__card" key={boat.slug}>
+        <article className="featured__card" id="featured-boat" key={boat.slug}>
           <Link href={boat.href} className="featured__photo">
-            <Photo src={vimg(boat.images[0])} seed={active} label={boat.name} />
+            <Photo src={boat.images[0]} sizes="(max-width: 860px) 90vw, 46vw" label={boat.name} />
           </Link>
           <div className="featured__info">
             <h3>{boat.name}</h3>

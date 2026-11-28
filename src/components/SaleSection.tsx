@@ -1,20 +1,16 @@
-"use client";
-
 import Link from "next/link";
 import { sale, saleListings } from "@/data/site";
-import { vimg } from "@/lib/img";
 import { Photo } from "./Photo";
 import { Reveal } from "./Reveal";
-import { useEnquire } from "./EnquireProvider";
+import { EnquireButton } from "./EnquireButton";
 
 /** «Продажа яхт» — раздел-аналог BUY у nauyachts.com */
 export function SaleSection() {
-  const { open } = useEnquire();
   return (
     <section id="sale" className="sale">
       <div className="sale__grid">
         <Reveal className="sale__media">
-          <Photo src={vimg(sale.image)} seed={1} label="Яхта на продажу" />
+          <Photo src={sale.image} sizes="(max-width: 860px) 90vw, 45vw" label="Яхта на воде" />
         </Reveal>
         <Reveal delay={120} className="sale__body">
           <p className="kicker">{sale.kicker}</p>
@@ -36,23 +32,18 @@ export function SaleSection() {
             ))}
           </ol>
           <div className="sale__cta">
-            <button className="btn btn--solid" onClick={open}>
-              Получить подборку
-            </button>
-            <Link className="btn btn--ghost" href="/prodazha-yacht">
-              Все яхты в продаже
-            </Link>
+            <EnquireButton>Получить подборку</EnquireButton>
           </div>
         </Reveal>
       </div>
 
       {saleListings.length > 0 && (
         <ul className="cards cards--3 sale__cards">
-          {saleListings.map((it, i) => (
+          {saleListings.map((it) => (
             <li key={it.href}>
               <Link href={it.href} className="card">
                 <div className="card__media">
-                  <Photo src={vimg(it.image)} seed={i} className="card__photo" label={it.name} />
+                  <Photo src={it.image} className="card__photo" label={it.name} />
                 </div>
                 <div className="card__body">
                   <h3>{it.name}</h3>

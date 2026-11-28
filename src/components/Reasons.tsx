@@ -1,5 +1,4 @@
 import { reasons } from "@/data/site";
-import { vimg } from "@/lib/img";
 import { Reveal } from "./Reveal";
 import { Photo } from "./Photo";
 
@@ -9,7 +8,7 @@ export function Reasons() {
       {reasons.map((r, i) => (
         <article key={r.title.join("")} className={`reason ${i % 2 ? "reason--flip" : ""}`}>
           <Reveal className="reason__media">
-            <Photo src={vimg(r.image)} seed={i} />
+            <Photo src={r.image} sizes="(max-width: 860px) 100vw, 50vw" />
           </Reveal>
           <Reveal className="reason__body" delay={120}>
             <p className="kicker">{r.kicker}</p>

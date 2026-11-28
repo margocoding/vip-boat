@@ -1,6 +1,5 @@
 import Link from "next/link";
 import { categories } from "@/data/site";
-import { vimg } from "@/lib/img";
 import { Photo } from "./Photo";
 
 /** Плитки категорий: те же шесть, что на vip-boat.ru */
@@ -12,10 +11,10 @@ export function CategoryTiles() {
         <h2 className="h2">Аренда яхт, катеров и теплоходов</h2>
       </div>
       <ul className="tiles__grid">
-        {categories.map((c, i) => (
+        {categories.map((c) => (
           <li key={c.href}>
             <Link href={c.href} className="tile">
-              <Photo src={vimg(c.image)} seed={i} className="tile__photo" />
+              <Photo src={c.image} className="tile__photo" />
               <span className="tile__shade" />
               <span className="tile__label">
                 {c.label}

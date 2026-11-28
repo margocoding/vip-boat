@@ -1,7 +1,6 @@
 import Link from "next/link";
-import { boats } from "@/data/boats";
-import { rub, vimg } from "@/lib/img";
-import { Photo } from "./Photo";
+import { fleet } from "@/data/rental";
+import { BoatCard } from "./rental/BoatCard";
 import { Reveal } from "./Reveal";
 
 export function BoatsCatalog() {
@@ -32,25 +31,7 @@ export function BoatsCatalog() {
       </div>
 
       <ul className="cards cards--3">
-        {boats.map((b, i) => (
-          <li key={b.slug}>
-            <Link href={b.href} className="card">
-              <div className="card__media">
-                <Photo src={vimg(b.images[0])} seed={i} className="card__photo" label={b.name} />
-                {b.priceOld && <span className="badge">скидка</span>}
-              </div>
-              <div className="card__body">
-                <h3>{b.name}</h3>
-                <p>
-                  {b.length} м · до {b.capacity} чел.
-                </p>
-                <p className="card__price">
-                  {b.priceOld && <s>{rub(b.priceOld)}</s>}от {rub(b.price)} / час
-                </p>
-              </div>
-            </Link>
-          </li>
-        ))}
+        {fleet["arenda-yachty"].map((vessel) => <li key={vessel.slug}><BoatCard vessel={vessel} /></li>)}
       </ul>
     </section>
   );
