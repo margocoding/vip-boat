@@ -8,5 +8,5 @@ export function EnquireButton({ children, note, className = "btn btn--solid" }: 
   className?: string;
 }) {
   const { open } = useEnquire();
-  return <button className={className} type="button" onClick={() => open(note)}>{children}</button>;
+  return <button className={className} type="button" onClick={event => open({ note }, event.currentTarget)}>{children}</button>;
 }

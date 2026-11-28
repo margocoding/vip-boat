@@ -11,9 +11,10 @@ import { Occasions } from "@/components/Occasions";
 import { Reviews } from "@/components/Reviews";
 import { Photo } from "@/components/Photo";
 import { BoatCard } from "@/components/rental/BoatCard";
-import { fleet } from "@/data/rental";
+import { editorial, isEditorialSection } from "@/data/editorial";
+import { fleet, isFleetSection } from "@/data/rental";
 import { interfaceText, localized, type Language } from "@/data/locale";
-import { site } from "@/data/site";
+import { categories, site } from "@/data/site";
 import { pageMetadata } from "@/lib/metadata";
 
 const content = {
@@ -21,6 +22,13 @@ const content = {
   en: { title: "Yacht and boat hire in St Petersburg | Vip Boat", description: "Choose a yacht, motorboat or event boat for a private charter in St Petersburg." },
   zh: { title: "圣彼得堡游艇与船只租赁 | Vip Boat", description: "在圣彼得堡租赁游艇、快艇或宴会船，开启专属水上之旅。" },
 };
+
+const catalogCategories = categories.map(category => {
+  const section = category.href.slice(1);
+  if (isFleetSection(section)) return { ...category, count: fleet[section].length };
+  if (isEditorialSection(section)) return { ...category, count: editorial[section].items.length };
+  return category;
+});
 
 export function homeMetadata(language: Language) {
   return pageMetadata(language, "/", content[language].title, content[language].description);
@@ -59,12 +67,12 @@ export default function Home({ language }: { language: Language }) {
   return (
     <>
       <Hero />
-      <CategoryStrip />
+      <CategoryStrip categories={catalogCategories} />
       <Manifesto />
       <Reasons />
       <FeaturedBoats />
       <Vessels />
-      <CategoryTiles />
+      <CategoryTiles categories={catalogCategories} />
       <BoatsCatalog />
       <Occasions />
       <Reviews />

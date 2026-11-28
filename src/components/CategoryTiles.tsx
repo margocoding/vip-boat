@@ -1,9 +1,9 @@
 import Link from "next/link";
-import { categories } from "@/data/site";
+import type { Category } from "@/data/site";
 import { Photo } from "./Photo";
 
 /** Плитки категорий: те же шесть, что на vip-boat.ru */
-export function CategoryTiles() {
+export function CategoryTiles({ categories }: { categories: Category[] }) {
   return (
     <section className="tiles" id="catalog">
       <div className="tiles__head">
@@ -18,7 +18,7 @@ export function CategoryTiles() {
               <span className="tile__shade" />
               <span className="tile__label">
                 {c.label}
-                {c.count ? <em>{c.count}</em> : null}
+                {c.count !== undefined && <em>{c.count}</em>}
               </span>
             </Link>
           </li>

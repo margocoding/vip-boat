@@ -17,7 +17,6 @@ export function Hero() {
         <p className="hero__sub">{site.heroText}</p>
         <div className="hero__cta">
           <a className="btn btn--solid" href="#catalog">Выбрать судно</a>
-          <a className="btn btn--ghost" href={site.phoneHref}>{site.phone}</a>
         </div>
       </div>
     </section>

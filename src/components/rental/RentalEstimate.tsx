@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import type { Language } from "@/data/locale";
 import { cateringCapacity, cateringOptions, estimateRental, rentalExtras, type RentalPricing, type RentalSelection } from "@/lib/estimate";
 import { rub } from "@/lib/img";
@@ -12,7 +12,7 @@ const text = {
     choices: ["Без кейтеринга", "Фуршет", "Банкет"], services: ["Сервировка", "Оформление палубы", "Фотограф"], perGuest: "с человека",
     result: "Ваш расчёт", hire: "Аренда", hour: "ч", price: "Предварительная стоимость", ready: "Продолжить к заявке", chooseDate: "Выберите дату для расчёта.",
     notice: "Расчёт демонстрационный. Сумма меняется в зависимости от даты, времени, числа гостей и услуг.",
-    total: "Предварительно", breakdown: "Детали", minimum: "Минимум", servings: "мест",
+    total: "Предварительно", breakdown: "Детали", minimum: "Минимум", servings: "мест", editGuests: "Изменить число гостей",
     tooMany: (format: string, count: number) => `${format} на этом судне — до ${count} гостей. Уменьшите число гостей или выберите другой формат.`,
   },
   en: {
@@ -20,7 +20,7 @@ const text = {
     choices: ["No catering", "Reception", "Banquet"], services: ["Table setup", "Deck décor", "Photographer"], perGuest: "per guest",
     result: "Your estimate", hire: "Charter", hour: "hr", price: "Estimated total", ready: "Continue to enquiry", chooseDate: "Choose a date to see the estimate.",
     notice: "Demo estimate. The total changes with the date, departure time, guests and selected services.",
-    total: "Estimate", breakdown: "Breakdown", minimum: "Minimum", servings: "places",
+    total: "Estimate", breakdown: "Breakdown", minimum: "Minimum", servings: "places", editGuests: "Change guest count",
     tooMany: (format: string, count: number) => `${format} seats up to ${count} guests on this vessel. Reduce your guest count or choose another format.`,
   },
   zh: {
@@ -28,7 +28,7 @@ const text = {
     choices: ["无需餐饮", "酒会", "宴会"], services: ["餐桌布置", "甲板装饰", "摄影师"], perGuest: "每位",
     result: "费用估算", hire: "船只租赁", hour: "小时", price: "预估总价", ready: "继续咨询", chooseDate: "请选择日期以查看预估费用。",
     notice: "演示估算。总价随日期、时间、人数及所选服务变化。",
-    total: "预估价格", breakdown: "查看明细", minimum: "最低消费", servings: "个座位",
+    total: "预估价格", breakdown: "查看明细", minimum: "最低消费", servings: "个座位", editGuests: "修改宾客人数",
     tooMany: (format: string, count: number) => `这艘船的${format}最多可接待 ${count} 位宾客。请减少人数或选择其他餐饮形式。`,
   },
 } as const;
@@ -36,6 +36,7 @@ const text = {
 export function RentalEstimate({ vessel, language }: { vessel: RentalPricing & { name: string }; language: Language }) {
   const copy = text[language];
   const { open } = useEnquire();
+  const guestField = useRef<HTMLSelectElement>(null);
   const [selection, setSelection] = useState<RentalSelection>({
     date: "2027-06-17",
     hour: 16,
@@ -45,22 +46,33 @@ export function RentalEstimate({ vessel, language }: { vessel: RentalPricing & {
     extras: [],
   });
   const estimate = estimateRental(vessel, selection);
-  const start = `${String(selection.hour).padStart(2, "0")}:00`;
   const update = <K extends keyof RentalSelection>(key: K, value: RentalSelection[K]) =>
     setSelection(current => ({ ...current, [key]: value }));
   const money = estimate ? rub(estimate.total) : "—";
-  const priceLabel = language === "ru" ? "Демонстрационный расчёт" : language === "en" ? "Demo estimate" : "演示估算";
   const cateringIndex = cateringOptions.findIndex(item => item.id === selection.catering);
   const limit = cateringCapacity(vessel, selection.catering);
   const validation = selection.guests > limit ? copy.tooMany(copy.choices[cateringIndex], limit) : null;
-  const services = rentalExtras.flatMap((item, index) => selection.extras.includes(item.id) ? [copy.services[index]] : []);
-  const enquiry = [
-    vessel.name,
-    `${selection.date} · ${start} · ${selection.hours} ${copy.hour} · ${copy.guests}: ${selection.guests}`,
-    copy.choices[cateringIndex],
-    ...services,
-    `${priceLabel}: ${money}`,
-  ].join("\n");
+
+  function editGuests() {
+    guestField.current?.scrollIntoView({ block: "center" });
+    guestField.current?.focus({ preventScroll: true });
+  }
+
+  function continueToEnquiry(trigger: HTMLButtonElement) {
+    if (!estimate) return;
+    const services = rentalExtras.flatMap((item, index) => selection.extras.includes(item.id) ? [copy.services[index]] : []);
+    open({
+      quote: {
+        vessel: vessel.name,
+        date: selection.date,
+        start: `${String(selection.hour).padStart(2, "0")}:00`,
+        duration: `${selection.hours} ${copy.hour}`,
+        guests: selection.guests,
+        options: [copy.choices[cateringIndex], ...services],
+        total: estimate.total,
+      },
+    }, trigger);
+  }
   return (
     <section className="estimate" id="estimate" aria-labelledby="estimate-title">
       <header className="estimate__header">
@@ -76,14 +88,14 @@ export function RentalEstimate({ vessel, language }: { vessel: RentalPricing & {
           <fieldset>
             <legend>{copy.trip}</legend>
             <div className="estimate__fields">
-              <label>{copy.date}<input name="date" type="date" value={selection.date} onChange={e => update("date", e.target.value)} /></label>
+              <label className="estimate__date">{copy.date}<input name="date" type="date" value={selection.date} onChange={e => update("date", e.target.value)} /></label>
               <label>{copy.start}<select aria-label={copy.start} value={selection.hour} onChange={e => update("hour", Number(e.target.value))}>
                 {Array.from({ length: 24 }, (_, hour) => <option key={hour} value={hour}>{String(hour).padStart(2, "0")}:00</option>)}
               </select></label>
               <label>{copy.hours}<select aria-label={copy.hours} value={selection.hours} onChange={e => update("hours", Number(e.target.value))}>
                 {Array.from({ length: 12 }, (_, i) => <option key={i} value={i + 1}>{i + 1}</option>)}
               </select></label>
-              <label>{copy.guests}<select aria-label={copy.guests} value={selection.guests} onChange={e => update("guests", Number(e.target.value))}>
+              <label>{copy.guests}<select ref={guestField} aria-label={copy.guests} value={selection.guests} onChange={e => update("guests", Number(e.target.value))}>
                 {Array.from({ length: vessel.capacity }, (_, i) => <option key={i} value={i + 1}>{i + 1}</option>)}
               </select></label>
             </div>
@@ -108,7 +120,12 @@ export function RentalEstimate({ vessel, language }: { vessel: RentalPricing & {
                 );
               })}
             </div>
-            {validation && <p className="estimate__validation" role="status">{validation}</p>}
+            {validation && (
+              <div className="estimate__validation">
+                <p role="status">{validation}</p>
+                <button className="plain-link" type="button" onClick={editGuests}>{copy.editGuests}</button>
+              </div>
+            )}
           </fieldset>
           <fieldset>
             <legend>{copy.extras}</legend>
@@ -138,7 +155,7 @@ export function RentalEstimate({ vessel, language }: { vessel: RentalPricing & {
             <span>{copy.price}</span>
             <strong>{money}</strong>
           </div>
-          <button className="btn btn--solid" type="button" disabled={!estimate} onClick={() => open(enquiry)}>{copy.ready}</button>
+          <button className="btn btn--solid" type="button" disabled={!estimate} onClick={event => continueToEnquiry(event.currentTarget)}>{copy.ready}</button>
         </aside>
       </div>
     </section>

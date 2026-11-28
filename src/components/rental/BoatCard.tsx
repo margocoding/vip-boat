@@ -24,6 +24,9 @@ export function BoatCard({ vessel, language = "ru", heading: Heading = "h3", pri
       <div className="card__body">
         <Heading>{name}</Heading>
         <p>{length && `${length} ${language === "ru" ? "м" : language === "zh" ? "米" : "m"} · `}{capacity} {copy.guests}</p>
+        <p className="card__price">
+          {priceOld && <s>{rub(priceOld)}</s>}{copy.from} {rub(price)} / {copy.hour}
+        </p>
         {configuration && (
           <dl className="fleet-card__specs">
             {configuration.buffet && <div><dt>{copy.buffet}</dt><dd>{configuration.buffet}</dd></div>}
@@ -32,9 +35,6 @@ export function BoatCard({ vessel, language = "ru", heading: Heading = "h3", pri
             {configuration.chairs && <div><dt>{copy.chairs}</dt><dd>{configuration.chairs}</dd></div>}
           </dl>
         )}
-        <p className="card__price">
-          {priceOld && <s>{rub(priceOld)}</s>}{copy.from} {rub(price)} / {copy.hour}
-        </p>
       </div>
     </Link>
   );

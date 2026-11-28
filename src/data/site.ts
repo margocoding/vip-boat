@@ -45,13 +45,13 @@ export const topNav: Link[] = [
 export type Category = Link & { count?: number; image: string };
 
 export const categories: Category[] = [
-  { label: "Аренда яхты в СПб", href: "/arenda-yachty", count: 28, image: "калиса.webp" },
-  { label: "Аренда катера в СПб", href: "/arenda-catera", count: 28, image: "_Maxum.webp" },
-  { label: "Аренда теплохода в СПб", href: "/arenda-teplohoda", count: 21, image: "Аренда теплохода альта 45.webp" },
+  { label: "Аренда яхты в СПб", href: "/arenda-yachty", image: "калиса.webp" },
+  { label: "Аренда катера в СПб", href: "/arenda-catera", image: "_Maxum.webp" },
+  { label: "Аренда теплохода в СПб", href: "/arenda-teplohoda", image: "Аренда теплохода альта 45.webp" },
   // Новый раздел, которого не было на старом сайте.
   { label: "Продажа яхт", href: "/prodazha-yacht", image: "Яхта Princess 68.webp" },
-  { label: "Маршруты", href: "/routes", count: 1, image: "Маршруты по каналам .webp" },
-  { label: "Мероприятия", href: "/events", count: 6, image: "arenda_katera.webp" },
+  { label: "Маршруты", href: "/routes", image: "Маршруты по каналам .webp" },
+  { label: "Мероприятия", href: "/events", image: "arenda_katera.webp" },
 ];
 
 /** Главное меню в шапке (как у образца: аренда / продажа) */

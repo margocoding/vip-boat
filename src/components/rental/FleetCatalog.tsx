@@ -5,39 +5,54 @@ import { BoatCard } from "./BoatCard";
 import { InteriorHeading } from "./InteriorHeading";
 
 export type CatalogQuery = Record<string, string | string[] | undefined>;
-const capacities = [10, 30, 50, 100, 150];
 const text = {
   ru: {
-    labels: ["Вместимость", "Палубы", "Сортировка", "Все", "До", "гостей", "Однопалубные", "Двухпалубные", "Премиум", "Рекомендуемые", "Сначала дешевле", "Сначала дороже", "Показать", "Сбросить", "Найдено", "По этим параметрам судов нет", "Попробуйте изменить вместимость или убрать фильтр.", "Планировка и рассадка показаны для примера."],
+    guests: "Сколько гостей?", example: "Например, 50", deck: "Палубы", sort: "Сортировка", any: "Все",
+    oneDeck: "Однопалубные", twoDecks: "Двухпалубные", premium: "Премиум", recommended: "Рекомендуемые",
+    lower: "Сначала дешевле", higher: "Сначала дороже", apply: "Показать", reset: "Сбросить", more: "Ещё фильтры",
+    results: "Найдено судов", empty: "Подходящих судов нет", retry: "Измените число гостей или сбросьте фильтры.",
+    layout: "Планировка и рассадка показаны для примера.",
   },
   en: {
-    labels: ["Capacity", "Decks", "Sort by", "Any", "Up to", "guests", "Single deck", "Two decks", "Premium", "Recommended", "Price: low to high", "Price: high to low", "Apply", "Reset", "Results", "No vessels match", "Try a different capacity or clear the filters.", "Decks and seating are shown for illustration."],
+    guests: "Guests in your group", example: "For example, 50", deck: "Decks", sort: "Sort by", any: "Any",
+    oneDeck: "Single deck", twoDecks: "Two decks", premium: "Premium", recommended: "Recommended",
+    lower: "Lowest price first", higher: "Highest price first", apply: "Show results", reset: "Reset", more: "More filters",
+    results: "Matching vessels", empty: "No vessels match", retry: "Change the number of guests or clear the filters.",
+    layout: "Decks and seating are shown for illustration.",
   },
   zh: {
-    labels: ["载客量", "甲板", "排序", "不限", "最多", "人", "单层甲板", "双层甲板", "高端", "推荐", "价格从低到高", "价格从高到低", "筛选", "重置", "结果", "暂无符合条件的船只", "请调整载客量或清除筛选条件。", "甲板与座位布局为演示示例。"],
+    guests: "同行宾客人数", example: "例如，50", deck: "甲板", sort: "排序", any: "不限",
+    oneDeck: "单层甲板", twoDecks: "双层甲板", premium: "高端", recommended: "推荐",
+    lower: "价格从低到高", higher: "价格从高到低", apply: "查看结果", reset: "重置", more: "更多筛选",
+    results: "匹配的船只", empty: "暂无符合条件的船只", retry: "请调整宾客人数或清除筛选条件。",
+    layout: "甲板与座位布局为演示示例。",
   },
 } as const;
 
 export function FleetCatalog({ section, query, language }: { section: FleetSection; query: CatalogQuery; language: Language }) {
   const nav = interfaceText[language];
-  const labels = text[language].labels;
+  const labels = text[language];
   const sections = Object.keys(fleetSections) as FleetSection[];
   const copy = fleetSectionCopy(section, language);
   const ships = section === "arenda-teplohoda";
-  const capacity = capacities.find(value => String(value) === query.capacity);
+  const guestParam = query.guests ?? query.capacity;
+  const partySize = typeof guestParam === "string" ? Number(guestParam) : 0;
+  const guests = Number.isSafeInteger(partySize) && partySize > 0 ? partySize : undefined;
   const deck = ships && (query.deck === "1" || query.deck === "2") ? Number(query.deck) : undefined;
   const premium = ships && query.premium === "1";
   const sort = query.sort === "price-asc" || query.sort === "price-desc" ? query.sort : "";
   const items = fleet[section].filter(vessel =>
-    (!capacity || vessel.capacity <= capacity) &&
+    (guests === undefined || vessel.capacity >= guests) &&
     (!deck || vessel.configuration?.decks === deck) &&
     (!premium || vessel.configuration?.premium),
   );
   if (sort) items.sort((a, b) => sort === "price-asc" ? a.price - b.price : b.price - a.price);
   const path = localized(language, `/${section}`);
+  const advanced = Boolean(deck || premium || sort);
   return (
     <>
       <InteriorHeading
+        compact
         title={copy.title}
         subtitle={copy.description}
         home={{ href: localized(language), label: nav.home }}
@@ -51,35 +66,40 @@ export function FleetCatalog({ section, query, language }: { section: FleetSecti
           ))}
         </nav>
         <form className="fleet-filters" action={path} method="get">
-          <label>{labels[0]}
-            <select name="capacity" defaultValue={capacity || ""}>
-              <option value="">{labels[3]}</option>
-              {capacities.map(value => <option key={value} value={value}>{labels[4]} {value} {labels[5]}</option>)}
-            </select>
-          </label>
-          {ships && <>
-            <label>{labels[1]}
-              <select name="deck" defaultValue={deck || ""}>
-                <option value="">{labels[3]}</option>
-                <option value="1">{labels[6]}</option>
-                <option value="2">{labels[7]}</option>
-              </select>
+          <div className="fleet-filters__quick">
+            <label>{labels.guests}
+              <input name="guests" type="number" inputMode="numeric" min="1" defaultValue={guests}
+                placeholder={labels.example} />
             </label>
-            <label className="fleet-premium"><input name="premium" type="checkbox" value="1" defaultChecked={premium} />{labels[8]}</label>
-          </>}
-          <label>{labels[2]}
-            <select name="sort" defaultValue={sort}>
-              <option value="">{labels[9]}</option>
-              <option value="price-asc">{labels[10]}</option>
-              <option value="price-desc">{labels[11]}</option>
-            </select>
-          </label>
-          <button className="btn btn--solid btn--sm" type="submit">{labels[12]}</button>
-          {(capacity || deck || premium || sort) && <Link href={path} className="plain-link">{labels[13]}</Link>}
+            <button className="btn btn--solid btn--sm" type="submit">{labels.apply}</button>
+          </div>
+          <details className="fleet-filters__more" open={advanced}>
+            <summary>{labels.more}</summary>
+            <div className="fleet-filters__advanced">
+              {ships && <>
+                <label>{labels.deck}
+                  <select name="deck" defaultValue={deck || ""}>
+                    <option value="">{labels.any}</option>
+                    <option value="1">{labels.oneDeck}</option>
+                    <option value="2">{labels.twoDecks}</option>
+                  </select>
+                </label>
+                <label className="fleet-premium"><input name="premium" type="checkbox" value="1" defaultChecked={premium} />{labels.premium}</label>
+              </>}
+              <label>{labels.sort}
+                <select name="sort" defaultValue={sort}>
+                  <option value="">{labels.recommended}</option>
+                  <option value="price-asc">{labels.lower}</option>
+                  <option value="price-desc">{labels.higher}</option>
+                </select>
+              </label>
+            </div>
+          </details>
         </form>
         <div className="fleet-summary">
-          <p>{labels[14]} · {items.length}</p>
-          {ships && <small>{labels[17]}</small>}
+          <p>{labels.results} · <strong>{items.length}</strong></p>
+          {(guests || advanced) && items.length > 0 && <Link href={path} className="plain-link" prefetch={false}>{labels.reset}</Link>}
+          {ships && items.length > 0 && <small>{labels.layout}</small>}
         </div>
         {items.length ? (
           <ul className="cards cards--3 fleet-grid">
@@ -88,7 +108,7 @@ export function FleetCatalog({ section, query, language }: { section: FleetSecti
             ))}
           </ul>
         ) : (
-          <div className="fleet-empty"><h2>{labels[15]}</h2><p>{labels[16]}</p><Link href={path} className="link-arrow">{labels[13]} →</Link></div>
+          <div className="fleet-empty"><h2>{labels.empty}</h2><p>{labels.retry}</p><Link href={path} className="link-arrow" prefetch={false}>{labels.reset} →</Link></div>
         )}
       </section>
     </>

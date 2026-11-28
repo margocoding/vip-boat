@@ -4,7 +4,6 @@ import "@/app/prototype.css";
 import { EnquireProvider } from "@/components/EnquireProvider";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { FloatingContact } from "@/components/FloatingContact";
 import { interfaceText, type Language } from "@/data/locale";
 import { origin } from "@/lib/metadata";
 
@@ -18,7 +17,6 @@ export default function SiteLayout({ children, language }: { children: React.Rea
           <Header language={language} />
           <main id="main-content" tabIndex={-1}>{children}</main>
           <Footer language={language} />
-          <FloatingContact language={language} />
         </EnquireProvider>
       </body>
     </html>
