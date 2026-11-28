@@ -75,8 +75,9 @@ export function Header({ language }: { language: Language }) {
             <a className="header__phone" href={site.phoneHref}>
               {site.phone}
             </a>
-            <button className="btn btn--ghost btn--sm header__enquire" onClick={() => { setMenu(false); open(); }}>
-              {copy.callback}
+            <button className="btn btn--ghost btn--sm header__enquire" aria-label={copy.callback} onClick={() => { setMenu(false); open(); }}>
+              <span className="header__enquire-full">{copy.callback}</span>
+              <span className="header__enquire-short">{language === "ru" ? "Звонок" : language === "en" ? "Call" : "回电"}</span>
             </button>
           </div>
         </div>
