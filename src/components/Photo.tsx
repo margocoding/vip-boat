@@ -1,33 +1,20 @@
-/**
- * Фото с запасным градиентом: если файла нет, виден градиент,
- * поэтому макет не «ломается», пока картинки не скопированы.
- * `src` — готовый URL (используйте vimg() для файлов из /public/vip-images).
- */
-const gradients = [
-  "linear-gradient(135deg,#00202f,#0b5a78 55%,#07c4cf)",
-  "linear-gradient(135deg,#002839,#165874 60%,#9fdde2)",
-  "linear-gradient(135deg,#001a28,#0f4a64 55%,#6fc9d1)",
-  "linear-gradient(135deg,#00283a,#1b6b86 55%,#d3f1f3)",
-];
+import { cardSizes, responsivePhoto } from "@/lib/media";
 
-export function Photo({
-  src,
-  seed = 0,
-  className = "",
-  label,
-}: {
+export function Photo({ src, className = "", label = "", sizes = cardSizes, priority = false }: {
   src: string;
-  seed?: number;
   className?: string;
   label?: string;
+  sizes?: string;
+  priority?: boolean;
 }) {
+  const image = responsivePhoto(src, sizes);
   return (
-    <div
-      className={`photo ${className}`}
-      style={{ backgroundImage: `url("${src}"), ${gradients[seed % gradients.length]}` }}
-      role={label ? "img" : undefined}
-      aria-label={label}
-      aria-hidden={label ? undefined : true}
-    />
+    <div className={`photo ${className}`}>
+      {image && (
+        // Local WebP variants already encode the right widths.
+        // eslint-disable-next-line @next/next/no-img-element
+        <img {...image} alt={label} loading={priority ? "eager" : "lazy"} fetchPriority={priority ? "high" : undefined} decoding="async" />
+      )}
+    </div>
   );
 }

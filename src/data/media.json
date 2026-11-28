@@ -1,0 +1,796 @@
+{
+  "aliases": {
+    "Яхта Meridian 381 в Санкт-Петербурге — вид с воды на Неве 123.webp": "meridian-381",
+    "Яхта Монако в Санкт-Петербурге — современная моторная яхта у причала-1.webp": "reason-marina",
+    "яхта Калифорния 62-4.webp": "kalifornia-62",
+    "Моторная яхта Majesty 44 на фоне достопримечательностей Санкт-Петербурга.webp": "majesty-44",
+    "Яхта Sunseeker 70 «Pallada» в Санкт-Петербурге — прогулка по Неве.webp": "sunseeker-70-pallada",
+    "Аренда яхты AZIMUT 62 в спб.webp": "azimut-62",
+    "Яхта Princess 68.webp": "princess-68",
+    "аренда яхты fairline 65.webp": "fairline-65",
+    "Аренда яхты GALEON 440 в спб.webp": "galeon-440",
+    "калиса.webp": "category-yachts",
+    "_Maxum.webp": "category-boats",
+    "Аренда теплохода альта 45.webp": "category-ships",
+    "Маршруты по каналам .webp": "routes",
+    "arenda_katera.webp": "events",
+    "Салон яхты Sunseeker 70 «Pallada» — роскошный интерьер с кожей и деревом-13.webp": "reason-salon",
+    "Аренда яхты Fairline 65 для VIP-прогулок по Финскому заливу 3.webp": "reason-fairline",
+    "Яхта Sunseeker 70 «Pallada» в Санкт-Петербурге — вид с борта-25.webp": "reason-pallada"
+  },
+  "media": {
+    "nord": {
+      "variants": {
+        "480": [
+          "/media/nord-480.webp",
+          345
+        ],
+        "800": [
+          "/media/nord-800.webp",
+          575
+        ],
+        "1280": [
+          "/media/nord-1280.webp",
+          920
+        ],
+        "1600": [
+          "/media/nord-1600.webp",
+          1150
+        ]
+      },
+      "source": "https://storage.yandexcloud.net/vip-boat-images/%D0%9A%D0%B0%D1%82%D0%B5%D1%80%20%D0%9D%D0%BE%D1%80%D0%B4%20%D0%B2%20%D0%A1%D0%B0%D0%BD%D0%BA%D1%82-%D0%9F%D0%B5%D1%82%D0%B5%D1%80%D0%B1%D1%83%D1%80%D0%B3%D0%B5%20-%20%D0%B1%D0%B5%D0%BB%D1%8B%D0%B8%CC%86%20%D0%BA%D0%BE%D1%80%D0%BF%D1%83%D1%81-vip-boat.webp"
+    },
+    "nord-salon": {
+      "variants": {
+        "480": [
+          "/media/nord-salon-480.webp",
+          320
+        ],
+        "800": [
+          "/media/nord-salon-800.webp",
+          533
+        ]
+      },
+      "source": "https://storage.yandexcloud.net/vip-boat-images/%D0%B0%D1%80%D0%B5%D0%BD%D0%B4%D0%B0%20%D0%BA%D0%B0%D1%82%D0%B5%D1%80%D0%B0%20%D0%9D%D0%BE%D1%80%D0%B4%20-15.webp"
+    },
+    "moulin-rouge": {
+      "variants": {
+        "480": [
+          "/media/moulin-rouge-480.webp",
+          347
+        ],
+        "800": [
+          "/media/moulin-rouge-800.webp",
+          578
+        ],
+        "1280": [
+          "/media/moulin-rouge-1280.webp",
+          924
+        ],
+        "1296": [
+          "/media/moulin-rouge-1296.webp",
+          936
+        ]
+      },
+      "source": "https://storage.yandexcloud.net/vip-boat-images/%D0%9A%D0%B0%D1%82%D0%B5%D1%80%20%D0%BC%D1%83%D0%BB%D0%B5%D0%BD%20%D1%80%D1%83%D0%B6%20%D0%B0%D1%80%D0%B5%D0%BD%D0%B4%D0%B0%20%D0%B2%20%D1%81%D0%BF%D0%B1.webp"
+    },
+    "moulin-rouge-salon": {
+      "variants": {
+        "480": [
+          "/media/moulin-rouge-salon-480.webp",
+          320
+        ],
+        "800": [
+          "/media/moulin-rouge-salon-800.webp",
+          533
+        ]
+      },
+      "source": "https://storage.yandexcloud.net/vip-boat-images/%D0%90%D1%80%D0%B5%D0%BD%D0%B4%D0%B0%20%D0%BA%D0%B0%D1%82%D0%B5%D1%80%D0%B0%20%D0%9C%D1%83%D0%BB%D0%B5%D0%BD%20%D0%A0%D1%83%D0%B626.webp"
+    },
+    "sea-ray-270": {
+      "variants": {
+        "480": [
+          "/media/sea-ray-270-480.webp",
+          347
+        ],
+        "800": [
+          "/media/sea-ray-270-800.webp",
+          578
+        ],
+        "1280": [
+          "/media/sea-ray-270-1280.webp",
+          924
+        ],
+        "1296": [
+          "/media/sea-ray-270-1296.webp",
+          936
+        ]
+      },
+      "source": "https://storage.yandexcloud.net/vip-boat-images/%D0%90%D1%80%D0%B5%D0%BD%D0%B4%D0%B0%20%D0%BA%D0%B0%D1%82%D0%B5%D1%80%D0%B0%20Sea%20Ray%20270%20%D0%B2%20%D1%81%D0%BF%D0%B1.webp"
+    },
+    "sea-ray-270-salon": {
+      "variants": {
+        "480": [
+          "/media/sea-ray-270-salon-480.webp",
+          720
+        ],
+        "800": [
+          "/media/sea-ray-270-salon-800.webp",
+          1200
+        ]
+      },
+      "source": "https://storage.yandexcloud.net/vip-boat-images/%D0%90%D1%80%D0%B5%D0%BD%D0%B4%D0%B0%20%D0%BA%D0%B0%D1%82%D0%B5%D1%80%D0%B0%20Sea%20Ray%20270%20%D0%B2%20%D1%81%D0%BF%D0%B1%206.webp"
+    },
+    "montferrand": {
+      "variants": {
+        "480": [
+          "/media/montferrand-480.webp",
+          345
+        ],
+        "800": [
+          "/media/montferrand-800.webp",
+          575
+        ],
+        "1152": [
+          "/media/montferrand-1152.webp",
+          828
+        ]
+      },
+      "source": "https://storage.yandexcloud.net/vip-boat-images/%D0%9A%D0%B0%D1%82%D0%B5%D1%80%20%D0%9C%D0%BE%D0%BD%D1%84%D0%B5%D1%80%D1%80%D0%B0%D0%BD%20%D1%83%20%D0%BF%D1%80%D0%B8%D1%87%D0%B0%D0%BB%D0%B0%20%D0%B2%20%D0%A1%D0%B0%D0%BD%D0%BA%D1%82-%D0%9F%D0%B5%D1%82%D0%B5%D1%80%D0%B1%D1%83%D1%80%D0%B3%D0%B5%20%E2%80%94%20%D0%B2%D0%B5%D0%BD%D0%B5%D1%86%D0%B8%D0%B0%D0%BD%D1%81%D0%BA%D0%B8%D0%B8%CC%86%20%D1%81%D1%82%D0%B8%D0%BB%D1%8C%20%D0%BD%D0%B0%20%D0%9D%D0%B5%D0%B2%D0%B5%20vip-boat.webp"
+    },
+    "montferrand-salon": {
+      "variants": {
+        "480": [
+          "/media/montferrand-salon-480.webp",
+          320
+        ],
+        "800": [
+          "/media/montferrand-salon-800.webp",
+          533
+        ]
+      },
+      "source": "https://storage.yandexcloud.net/vip-boat-images/%D0%9F%D0%B0%D0%BB%D1%83%D0%B1%D0%B0%20%D0%BA%D0%B0%D1%82%D0%B5%D1%80%D0%B0%20%D0%9C%D0%BE%D0%BD%D1%84%D0%B5%D1%80%D1%80%D0%B0%D0%BD%20%E2%80%94%20%D0%BC%D0%B5%D1%81%D1%82%D0%BE%20%D0%B4%D0%BB%D1%8F%20%D1%84%D0%BE%D1%82%D0%BE%D1%81%D0%B5%D1%81%D1%81%D0%B8%D0%B8%CC%86%20%D0%B8%20%D0%BF%D1%80%D0%B0%D0%B7%D0%B4%D0%BD%D0%B8%D0%BA%D0%BE%D0%B2%20%D0%BD%D0%B0%20%D0%B2%D0%BE%D0%B4%D0%B5vip-boat.webp"
+    },
+    "siesta": {
+      "variants": {
+        "480": [
+          "/media/siesta-480.webp",
+          347
+        ],
+        "800": [
+          "/media/siesta-800.webp",
+          578
+        ],
+        "1280": [
+          "/media/siesta-1280.webp",
+          924
+        ],
+        "1296": [
+          "/media/siesta-1296.webp",
+          936
+        ]
+      },
+      "source": "https://storage.yandexcloud.net/vip-boat-images/%D1%82%D0%B5%D0%BF%D0%BB%D0%BE%D1%85%D0%BE%D0%B4%20C%D0%B8%D0%B5%D1%81%D1%82%D0%B0%20%D0%B2%20%D0%B0%D1%80%D0%B5%D0%BD%D0%B4%D1%83%20%D0%B2%20%D1%81%D0%BF%D0%B1-1.webp"
+    },
+    "siesta-salon": {
+      "variants": {
+        "480": [
+          "/media/siesta-salon-480.webp",
+          360
+        ],
+        "800": [
+          "/media/siesta-salon-800.webp",
+          600
+        ]
+      },
+      "source": "https://storage.yandexcloud.net/vip-boat-images/%D0%98%D0%BD%D1%82%D0%B5%D1%80%D1%8C%D0%B5%D1%80%20%D1%82%D0%B5%D0%BF%D0%BB%D0%BE%D1%85%D0%BE%D0%B4%D0%B0%20%D0%A1%D0%B8%D0%B5%D1%81%D1%82%D0%B0%20-%20%D1%83%D1%8E%D1%82%D0%BD%D1%8B%D0%B8%CC%86%20%D1%81%D0%B0%D0%BB%D0%BE%D0%BD%20%D1%81%20%D0%BA%D0%BE%D0%B6%D0%B0%D0%BD%D0%BE%D0%B8%CC%86%20%D0%BC%D0%B5%D0%B1%D0%B5%D0%BB%D1%8C%D1%8E-2.webp"
+    },
+    "alta": {
+      "variants": {
+        "480": [
+          "/media/alta-480.webp",
+          320
+        ],
+        "800": [
+          "/media/alta-800.webp",
+          533
+        ],
+        "1200": [
+          "/media/alta-1200.webp",
+          800
+        ]
+      },
+      "source": "https://storage.yandexcloud.net/vip-boat-images/%D0%A2%D0%B5%D0%BF%D0%BB%D0%BE%D1%85%D0%BE%D0%B4%20%D0%90%D0%BB%D1%8C%D1%82%D0%B0%20%D0%B2%20%D0%A1%D0%B0%D0%BD%D0%BA%D1%82-%D0%9F%D0%B5%D1%82%D0%B5%D1%80%D0%B1%D1%83%D1%80%D0%B3%D0%B5.webp"
+    },
+    "alta-salon": {
+      "variants": {
+        "480": [
+          "/media/alta-salon-480.webp",
+          320
+        ],
+        "800": [
+          "/media/alta-salon-800.webp",
+          533
+        ]
+      },
+      "source": "https://storage.yandexcloud.net/vip-boat-images/%D0%98%D0%BD%D1%82%D0%B5%D1%80%D1%8C%D0%B5%D1%80%20%D1%82%D0%B5%D0%BF%D0%BB%D0%BE%D1%85%D0%BE%D0%B4%D0%B0%20%D0%90%D0%BB%D1%8C%D1%82%D0%B0%20%D1%81%20%D0%B1%D0%B0%D0%BD%D0%BA%D0%B5%D1%82%D0%BD%D1%8B%D0%BC%D0%B8%20%D1%81%D1%82%D0%BE%D0%BB%D0%B0%D0%BC%D0%B8.webp"
+    },
+    "ameli": {
+      "variants": {
+        "480": [
+          "/media/ameli-480.webp",
+          347
+        ],
+        "800": [
+          "/media/ameli-800.webp",
+          578
+        ],
+        "1280": [
+          "/media/ameli-1280.webp",
+          924
+        ],
+        "1296": [
+          "/media/ameli-1296.webp",
+          936
+        ]
+      },
+      "source": "https://storage.yandexcloud.net/vip-boat-images/%D0%A2%D0%B5%D0%BF%D0%BB%D0%BE%D1%85%D0%BE%D0%B4%20%D0%90%D0%BC%D0%B5%D0%BB%D0%B8%20%D0%B2%20%D0%A1%D0%B0%D0%BD%D0%BA%D1%82-%D0%9F%D0%B5%D1%82%D0%B5%D1%80%D0%B1%D1%83%D1%80%D0%B3%D0%B5%20-%20%D0%B2%D0%B8%D0%B4%20%D0%B4%D0%B2%D1%83%D1%85%D0%BF%D0%B0%D0%BB%D1%83%D0%B1%D0%BD%D0%BE%D0%B3%D0%BE%20%D1%81%D1%83%D0%B4%D0%BD%D0%B0%20%D0%BD%D0%B0%20%D0%9D%D0%B5%D0%B2%D0%B5.webp"
+    },
+    "ameli-salon": {
+      "variants": {
+        "480": [
+          "/media/ameli-salon-480.webp",
+          320
+        ],
+        "800": [
+          "/media/ameli-salon-800.webp",
+          533
+        ]
+      },
+      "source": "https://storage.yandexcloud.net/vip-boat-images/%D0%90%D1%80%D0%B5%D0%BD%D0%B4%D0%B0%20%D1%82%D0%B5%D0%BF%D0%BB%D0%BE%D1%85%D0%BE%D0%B4%D0%B0%20%D0%90%D0%BC%D0%B5%D0%BB%D0%B8%20%D0%B2%20%D1%81%D0%BF%D0%B1%206.webp"
+    },
+    "mirazh": {
+      "variants": {
+        "480": [
+          "/media/mirazh-480.webp",
+          320
+        ],
+        "800": [
+          "/media/mirazh-800.webp",
+          534
+        ],
+        "1024": [
+          "/media/mirazh-1024.webp",
+          683
+        ]
+      },
+      "source": "https://storage.yandexcloud.net/vip-boat-images/%D0%90%D1%80%D0%B5%D0%BD%D0%B4%D0%B0%20%D1%82%D0%B5%D0%BF%D0%BB%D0%BE%D1%85%D0%BE%D0%B4%D0%B0%20%D0%BC%D0%B8%D1%80%D0%B0%D0%B6.webp"
+    },
+    "mirazh-salon": {
+      "variants": {
+        "480": [
+          "/media/mirazh-salon-480.webp",
+          320
+        ],
+        "800": [
+          "/media/mirazh-salon-800.webp",
+          533
+        ]
+      },
+      "source": "https://storage.yandexcloud.net/vip-boat-images/%D0%91%D0%B0%D0%BD%D0%BA%D0%B5%D1%82%D0%BD%D1%8B%D0%B9%20%D0%B7%D0%B0%D0%BB%20%D1%82%D0%B5%D0%BF%D0%BB%D0%BE%D1%85%D0%BE%D0%B4%D0%B0%20%D0%9C%D0%B8%D1%80%D0%B0%D0%B6%203.webp"
+    },
+    "vasiliy": {
+      "variants": {
+        "480": [
+          "/media/vasiliy-480.webp",
+          320
+        ],
+        "800": [
+          "/media/vasiliy-800.webp",
+          533
+        ],
+        "1200": [
+          "/media/vasiliy-1200.webp",
+          800
+        ]
+      },
+      "source": "https://storage.yandexcloud.net/vip-boat-images/%D0%90%D1%80%D0%B5%D0%BD%D0%B4%D0%B0%20%D1%82%D0%B5%D0%BF%D0%BB%D0%BE%D1%85%D0%BE%D0%B4%D0%B0%20%D0%92%D0%B0%D1%81%D0%B8%D0%BB%D0%B8%D0%B9%20%D0%B2%20%D1%81%D0%BF%D0%B1%205.webp"
+    },
+    "vasiliy-salon": {
+      "variants": {
+        "480": [
+          "/media/vasiliy-salon-480.webp",
+          347
+        ],
+        "800": [
+          "/media/vasiliy-salon-800.webp",
+          578
+        ]
+      },
+      "source": "https://storage.yandexcloud.net/vip-boat-images/%D0%9F%D1%80%D0%BE%D1%81%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D0%B8%CC%86%20%D0%B1%D0%B0%D0%BD%D0%BA%D0%B5%D1%82%D0%BD%D1%8B%D0%B8%CC%86%20%D0%B7%D0%B0%D0%BB%20%D0%BD%D0%B0%20%D1%82%D0%B5%D0%BF%D0%BB%D0%BE%D1%85%D0%BE%D0%B4%D0%B5%20%D0%92%D0%B0%D1%81%D0%B8%D0%BB%D0%B8%D0%B8%CC%86%20%D0%B4%D0%BB%D1%8F%20%D1%81%D0%B2%D0%B0%D0%B4%D1%8C%D0%B1%D1%8B%20%D0%B8%20%D0%BA%D0%BE%D1%80%D0%BF%D0%BE%D1%80%D0%B0%D1%82%D0%B8%D0%B2%D0%B0%20.webp"
+    },
+    "politruk-bocharov": {
+      "variants": {
+        "480": [
+          "/media/politruk-bocharov-480.webp",
+          270
+        ],
+        "800": [
+          "/media/politruk-bocharov-800.webp",
+          450
+        ],
+        "1280": [
+          "/media/politruk-bocharov-1280.webp",
+          720
+        ],
+        "1600": [
+          "/media/politruk-bocharov-1600.webp",
+          900
+        ]
+      },
+      "source": "https://storage.yandexcloud.net/vip-boat-images/%D0%A0%D0%B5%D1%82%D1%80%D0%BE-%D1%82%D0%B5%D0%BF%D0%BB%D0%BE%D1%85%D0%BE%D0%B4%20%D0%9F%D0%BE%D0%BB%D0%B8%D1%82%D1%80%D1%83%D0%BA%20%D0%91%D0%BE%D1%87%D0%B0%D1%80%D0%BE%D0%B2%20%D0%B2%20%D0%A1%D0%B0%D0%BD%D0%BA%D1%82-%D0%9F%D0%B5%D1%82%D0%B5%D1%80%D0%B1%D1%83%D1%80%D0%B3%D0%B5-1_1.webp"
+    },
+    "politruk-bocharov-salon": {
+      "variants": {
+        "480": [
+          "/media/politruk-bocharov-salon-480.webp",
+          320
+        ],
+        "800": [
+          "/media/politruk-bocharov-salon-800.webp",
+          533
+        ]
+      },
+      "source": "https://storage.yandexcloud.net/vip-boat-images/%D0%9A%D0%B0%D1%8E%D1%82-%D0%BA%D0%BE%D0%BC%D0%BF%D0%B0%D0%BD%D0%B8%D1%8F%20%D1%82%D0%B5%D0%BF%D0%BB%D0%BE%D1%85%D0%BE%D0%B4%D0%B0%20%D0%9F%D0%BE%D0%BB%D0%B8%D1%82%D1%80%D1%83%D0%BA%20%D0%91%D0%BE%D1%87%D0%B0%D1%80%D0%BE%D0%B2%20-%20%D0%BE%D1%82%D0%B4%D0%B5%D0%BB%D0%BA%D0%B0%20%D0%B4%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%BC-2.webp"
+    },
+    "meridian-381": {
+      "variants": {
+        "480": [
+          "/media/meridian-381-480.webp",
+          345
+        ],
+        "576": [
+          "/media/meridian-381-576.webp",
+          414
+        ]
+      },
+      "source": "https://storage.yandexcloud.net/vip-boat-images/%D0%AF%D1%85%D1%82%D0%B0%20Meridian%20381%20%D0%B2%20%D0%A1%D0%B0%D0%BD%D0%BA%D1%82-%D0%9F%D0%B5%D1%82%D0%B5%D1%80%D0%B1%D1%83%D1%80%D0%B3%D0%B5%20%E2%80%94%20%D0%B2%D0%B8%D0%B4%20%D1%81%20%D0%B2%D0%BE%D0%B4%D1%8B%20%D0%BD%D0%B0%20%D0%9D%D0%B5%D0%B2%D0%B5%20123.webp"
+    },
+    "meridian-381-salon": {
+      "variants": {
+        "480": [
+          "/media/meridian-381-salon-480.webp",
+          320
+        ],
+        "800": [
+          "/media/meridian-381-salon-800.webp",
+          533
+        ]
+      },
+      "source": "https://storage.yandexcloud.net/vip-boat-images/%D0%A1%D0%B0%D0%BB%D0%BE%D0%BD%20%D1%8F%D1%85%D1%82%D1%8B%20Meridian%20381%20%E2%80%94%20%D0%BB%D1%8E%D0%BA%D1%81-%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D1%8C%D0%B5%D1%80%20%D1%81%20%D0%BF%D0%B0%D0%BD%D0%BE%D1%80%D0%B0%D0%BC%D0%BD%D1%8B%D0%BC%D0%B8%20%D0%BE%D0%BA%D0%BD%D0%B0%D0%BC%D0%B8%20-2.webp"
+    },
+    "yahta-monaco": {
+      "variants": {
+        "480": [
+          "/media/yahta-monaco-480.webp",
+          345
+        ],
+        "800": [
+          "/media/yahta-monaco-800.webp",
+          575
+        ],
+        "1200": [
+          "/media/yahta-monaco-1200.webp",
+          862
+        ]
+      },
+      "source": "https://storage.yandexcloud.net/vip-boat-images/%D0%AF%D1%85%D1%82%D0%B0%20%D0%9C%D0%BE%D0%BD%D0%B0%D0%BA%D0%BE%20%D0%B2%20%D0%A1%D0%B0%D0%BD%D0%BA%D1%82-%D0%9F%D0%B5%D1%82%D0%B5%D1%80%D0%B1%D1%83%D1%80%D0%B3%D0%B5%20%E2%80%94%20%D1%81%D0%BE%D0%B2%D1%80%D0%B5%D0%BC%D0%B5%D0%BD%D0%BD%D0%B0%D1%8F%20%D0%BC%D0%BE%D1%82%D0%BE%D1%80%D0%BD%D0%B0%D1%8F%20%D1%8F%D1%85%D1%82%D0%B0%20%D1%83%20%D0%BF%D1%80%D0%B8%D1%87%D0%B0%D0%BB%D0%B0-1.webp"
+    },
+    "yahta-monaco-salon": {
+      "variants": {
+        "480": [
+          "/media/yahta-monaco-salon-480.webp",
+          320
+        ],
+        "800": [
+          "/media/yahta-monaco-salon-800.webp",
+          533
+        ]
+      },
+      "source": "https://storage.yandexcloud.net/vip-boat-images/%D0%A1%D0%B0%D0%BB%D0%BE%D0%BD%20%D1%8F%D1%85%D1%82%D1%8B%20%D0%9C%D0%BE%D0%BD%D0%B0%D0%BA%D0%BE%20%E2%80%94%20%D0%BB%D1%8E%D0%BA%D1%81%20%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D1%8C%D0%B5%D1%80%20%D1%81%20%D0%BF%D0%B0%D0%BD%D0%BE%D1%80%D0%B0%D0%BC%D0%BD%D1%8B%D0%BC%D0%B8%20%D0%BE%D0%BA%D0%BD%D0%B0%D0%BC%D0%B8-3.webp"
+    },
+    "kalifornia-62": {
+      "variants": {
+        "480": [
+          "/media/kalifornia-62-480.webp",
+          345
+        ],
+        "800": [
+          "/media/kalifornia-62-800.webp",
+          575
+        ],
+        "1200": [
+          "/media/kalifornia-62-1200.webp",
+          862
+        ]
+      },
+      "source": "https://storage.yandexcloud.net/vip-boat-images/%D1%8F%D1%85%D1%82%D0%B0%20%D0%9A%D0%B0%D0%BB%D0%B8%D1%84%D0%BE%D1%80%D0%BD%D0%B8%D1%8F%2062-4.webp"
+    },
+    "kalifornia-62-salon": {
+      "variants": {
+        "480": [
+          "/media/kalifornia-62-salon-480.webp",
+          320
+        ],
+        "800": [
+          "/media/kalifornia-62-salon-800.webp",
+          534
+        ]
+      },
+      "source": "https://storage.yandexcloud.net/vip-boat-images/%D1%8F%D1%85%D1%82%D0%B0%20%D0%9A%D0%B0%D0%BB%D0%B8%D1%84%D0%BE%D1%80%D0%BD%D0%B8%D1%8F%2062-11.webp"
+    },
+    "majesty-44": {
+      "variants": {
+        "480": [
+          "/media/majesty-44-480.webp",
+          345
+        ],
+        "800": [
+          "/media/majesty-44-800.webp",
+          575
+        ],
+        "1200": [
+          "/media/majesty-44-1200.webp",
+          862
+        ]
+      },
+      "source": "https://storage.yandexcloud.net/vip-boat-images/%D0%9C%D0%BE%D1%82%D0%BE%D1%80%D0%BD%D0%B0%D1%8F%20%D1%8F%D1%85%D1%82%D0%B0%20Majesty%2044%20%D0%BD%D0%B0%20%D1%84%D0%BE%D0%BD%D0%B5%20%D0%B4%D0%BE%D1%81%D1%82%D0%BE%D0%BF%D1%80%D0%B8%D0%BC%D0%B5%D1%87%D0%B0%D1%82%D0%B5%D0%BB%D1%8C%D0%BD%D0%BE%D1%81%D1%82%D0%B5%D0%B8%CC%86%20%D0%A1%D0%B0%D0%BD%D0%BA%D1%82-%D0%9F%D0%B5%D1%82%D0%B5%D1%80%D0%B1%D1%83%D1%80%D0%B3%D0%B0.webp"
+    },
+    "majesty-44-salon": {
+      "variants": {
+        "480": [
+          "/media/majesty-44-salon-480.webp",
+          320
+        ],
+        "800": [
+          "/media/majesty-44-salon-800.webp",
+          533
+        ]
+      },
+      "source": "https://storage.yandexcloud.net/vip-boat-images/%D0%A1%D0%B0%D0%BB%D0%BE%D0%BD%20%D1%8F%D1%85%D1%82%D1%8B%20Majesty%2044-%20%D0%B7%D0%BE%D0%BD%D0%B0%20%D0%BE%D1%82%D0%B4%D1%8B%D1%85%D0%B0%20%D1%81%20%D0%BA%D0%BE%D0%B6%D0%B0%D0%BD%D1%8B%D0%BC%D0%B8%20%D0%B4%D0%B8%D0%B2%D0%B0%D0%BD%D0%B0%D0%BC%D0%B8-10.webp"
+    },
+    "sunseeker-70-pallada": {
+      "variants": {
+        "480": [
+          "/media/sunseeker-70-pallada-480.webp",
+          345
+        ],
+        "800": [
+          "/media/sunseeker-70-pallada-800.webp",
+          575
+        ],
+        "1200": [
+          "/media/sunseeker-70-pallada-1200.webp",
+          862
+        ]
+      },
+      "source": "https://storage.yandexcloud.net/vip-boat-images/%D0%AF%D1%85%D1%82%D0%B0%20Sunseeker%2070%20%C2%ABPallada%C2%BB%20%D0%B2%20%D0%A1%D0%B0%D0%BD%D0%BA%D1%82-%D0%9F%D0%B5%D1%82%D0%B5%D1%80%D0%B1%D1%83%D1%80%D0%B3%D0%B5%20%E2%80%94%20%D0%BF%D1%80%D0%BE%D0%B3%D1%83%D0%BB%D0%BA%D0%B0%20%D0%BF%D0%BE%20%D0%9D%D0%B5%D0%B2%D0%B5.webp"
+    },
+    "sunseeker-70-pallada-salon": {
+      "variants": {
+        "480": [
+          "/media/sunseeker-70-pallada-salon-480.webp",
+          320
+        ],
+        "800": [
+          "/media/sunseeker-70-pallada-salon-800.webp",
+          534
+        ]
+      },
+      "source": "https://storage.yandexcloud.net/vip-boat-images/%D0%A1%D0%B0%D0%BB%D0%BE%D0%BD%20%D1%8F%D1%85%D1%82%D1%8B%20Sunseeker%2070%20%C2%ABPallada%C2%BB%20%E2%80%94%20%D1%80%D0%BE%D1%81%D0%BA%D0%BE%D1%88%D0%BD%D1%8B%D0%B8%CC%86%20%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D1%8C%D0%B5%D1%80%20%D1%81%20%D0%BA%D0%BE%D0%B6%D0%B5%D0%B8%CC%86%20%D0%B8%20%D0%B4%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%BC-12.webp"
+    },
+    "azimut-62": {
+      "variants": {
+        "480": [
+          "/media/azimut-62-480.webp",
+          345
+        ],
+        "800": [
+          "/media/azimut-62-800.webp",
+          575
+        ],
+        "1200": [
+          "/media/azimut-62-1200.webp",
+          862
+        ]
+      },
+      "source": "https://storage.yandexcloud.net/vip-boat-images/%D0%90%D1%80%D0%B5%D0%BD%D0%B4%D0%B0%20%D1%8F%D1%85%D1%82%D1%8B%20AZIMUT%2062%20%D0%B2%20%D1%81%D0%BF%D0%B1.webp"
+    },
+    "azimut-62-salon": {
+      "variants": {
+        "480": [
+          "/media/azimut-62-salon-480.webp",
+          320
+        ],
+        "800": [
+          "/media/azimut-62-salon-800.webp",
+          533
+        ]
+      },
+      "source": "https://storage.yandexcloud.net/vip-boat-images/%D0%A1%D0%B0%D0%BB%D0%BE%D0%BD%20AZIMUT%2062%20%E2%80%94%20%D0%BF%D0%B0%D0%BD%D0%BE%D1%80%D0%B0%D0%BC%D0%BD%D1%8B%D0%B5%20%D0%BE%D0%BA%D0%BD%D0%B0%20%D0%B8%20%D1%81%D0%BE%D0%B2%D1%80%D0%B5%D0%BC%D0%B5%D0%BD%D0%BD%D1%8B%D0%B8%CC%86%20%D0%B4%D0%B8%D0%B7%D0%B0%D0%B8%CC%86%D0%BD%203.webp"
+    },
+    "princess-68": {
+      "variants": {
+        "480": [
+          "/media/princess-68-480.webp",
+          345
+        ],
+        "800": [
+          "/media/princess-68-800.webp",
+          575
+        ],
+        "1152": [
+          "/media/princess-68-1152.webp",
+          828
+        ]
+      },
+      "source": "https://storage.yandexcloud.net/vip-boat-images/%D0%AF%D1%85%D1%82%D0%B0%20Princess%2068.webp"
+    },
+    "princess-68-salon": {
+      "variants": {
+        "480": [
+          "/media/princess-68-salon-480.webp",
+          320
+        ],
+        "800": [
+          "/media/princess-68-salon-800.webp",
+          533
+        ]
+      },
+      "source": "https://storage.yandexcloud.net/vip-boat-images/%D0%9F%D1%80%D0%BE%D1%81%D1%82%D0%BE%D1%80%D0%BD%D1%8B%D0%B8%CC%86%20%D1%81%D0%B0%D0%BB%D0%BE%D0%BD%20%D1%8F%D1%85%D1%82%D1%8B%20Princess%2068%20%E2%80%94%20%D0%BF%D1%80%D0%B5%D0%BC%D0%B8%D0%B0%D0%BB%D1%8C%D0%BD%D0%B0%D1%8F%20%D0%BE%D1%82%D0%B4%D0%B5%D0%BB%D0%BA%D0%B0-19.webp"
+    },
+    "fairline-65": {
+      "variants": {
+        "480": [
+          "/media/fairline-65-480.webp",
+          345
+        ],
+        "800": [
+          "/media/fairline-65-800.webp",
+          575
+        ],
+        "1200": [
+          "/media/fairline-65-1200.webp",
+          862
+        ]
+      },
+      "source": "https://storage.yandexcloud.net/vip-boat-images/%D0%B0%D1%80%D0%B5%D0%BD%D0%B4%D0%B0%20%D1%8F%D1%85%D1%82%D1%8B%20fairline%2065.webp"
+    },
+    "fairline-65-salon": {
+      "variants": {
+        "480": [
+          "/media/fairline-65-salon-480.webp",
+          320
+        ],
+        "800": [
+          "/media/fairline-65-salon-800.webp",
+          533
+        ]
+      },
+      "source": "https://storage.yandexcloud.net/vip-boat-images/%D0%90%D1%80%D0%B5%D0%BD%D0%B4%D0%B0%20%D1%8F%D1%85%D1%82%D1%8B%20Fairline%2065%20%D0%B4%D0%BB%D1%8F%20VIP-%D0%BF%D1%80%D0%BE%D0%B3%D1%83%D0%BB%D0%BE%D0%BA%20%D0%BF%D0%BE%20%D0%A4%D0%B8%D0%BD%D1%81%D0%BA%D0%BE%D0%BC%D1%83%20%D0%B7%D0%B0%D0%BB%D0%B8%D0%B2%D1%83%2014.webp"
+    },
+    "galeon-440": {
+      "variants": {
+        "480": [
+          "/media/galeon-440-480.webp",
+          345
+        ],
+        "800": [
+          "/media/galeon-440-800.webp",
+          575
+        ],
+        "1200": [
+          "/media/galeon-440-1200.webp",
+          862
+        ]
+      },
+      "source": "https://storage.yandexcloud.net/vip-boat-images/%D0%90%D1%80%D0%B5%D0%BD%D0%B4%D0%B0%20%D1%8F%D1%85%D1%82%D1%8B%20GALEON%20440%20%D0%B2%20%D1%81%D0%BF%D0%B1.webp"
+    },
+    "galeon-440-salon": {
+      "variants": {
+        "480": [
+          "/media/galeon-440-salon-480.webp",
+          320
+        ],
+        "800": [
+          "/media/galeon-440-salon-800.webp",
+          533
+        ]
+      },
+      "source": "https://storage.yandexcloud.net/vip-boat-images/%D0%AF%D1%85%D1%82%D0%B0%20Galeon%20440%20%D0%BD%D0%B0%2016%20%D1%87%D0%B5%D0%BB%D0%BE%D0%B2%D0%B5%D0%BA%20vip-boat-3.webp"
+    },
+    "hero": {
+      "variants": {
+        "480": [
+          "/media/hero-480.webp",
+          320
+        ],
+        "800": [
+          "/media/hero-800.webp",
+          533
+        ],
+        "1200": [
+          "/media/hero-1200.webp",
+          800
+        ]
+      },
+      "source": "https://storage.yandexcloud.net/vip-boat-images/atlantis111.jpg"
+    },
+    "category-yachts": {
+      "variants": {
+        "480": [
+          "/media/category-yachts-480.webp",
+          480
+        ],
+        "600": [
+          "/media/category-yachts-600.webp",
+          600
+        ]
+      },
+      "source": "https://storage.yandexcloud.net/vip-boat-images/%D0%BA%D0%B0%D0%BB%D0%B8%D1%81%D0%B0.webp"
+    },
+    "category-boats": {
+      "variants": {
+        "480": [
+          "/media/category-boats-480.webp",
+          480
+        ],
+        "600": [
+          "/media/category-boats-600.webp",
+          600
+        ]
+      },
+      "source": "https://storage.yandexcloud.net/vip-boat-images/%20Maxum.webp"
+    },
+    "category-ships": {
+      "variants": {
+        "480": [
+          "/media/category-ships-480.webp",
+          480
+        ],
+        "600": [
+          "/media/category-ships-600.webp",
+          600
+        ]
+      },
+      "source": "https://storage.yandexcloud.net/vip-boat-images/%D0%90%D1%80%D0%B5%D0%BD%D0%B4%D0%B0%20%D1%82%D0%B5%D0%BF%D0%BB%D0%BE%D1%85%D0%BE%D0%B4%D0%B0%20%D0%B0%D0%BB%D1%8C%D1%82%D0%B0%2045.webp"
+    },
+    "routes": {
+      "variants": {
+        "480": [
+          "/media/routes-480.webp",
+          204
+        ],
+        "800": [
+          "/media/routes-800.webp",
+          339
+        ],
+        "1280": [
+          "/media/routes-1280.webp",
+          543
+        ],
+        "1584": [
+          "/media/routes-1584.webp",
+          672
+        ]
+      },
+      "source": "https://storage.yandexcloud.net/vip-boat-images/Vodnye_marshruty.jpg"
+    },
+    "events": {
+      "variants": {
+        "480": [
+          "/media/events-480.webp",
+          480
+        ],
+        "600": [
+          "/media/events-600.webp",
+          600
+        ]
+      },
+      "source": "https://storage.yandexcloud.net/vip-boat-images/arenda_katera.webp"
+    },
+    "venice": {
+      "variants": {
+        "480": [
+          "/media/venice-480.webp",
+          270
+        ],
+        "800": [
+          "/media/venice-800.webp",
+          451
+        ],
+        "1280": [
+          "/media/venice-1280.webp",
+          721
+        ],
+        "1600": [
+          "/media/venice-1600.webp",
+          902
+        ]
+      },
+      "source": "https://storage.yandexcloud.net/vip-boat-images/%D0%9C%D0%B0%D1%80%D1%88%D1%80%D1%83%D1%82%20%D0%9F%D0%B5%D1%82%D1%80%D0%BE%D0%B2%D1%81%D0%BA%D0%B0%D1%8F%20%D0%92%D0%B5%D0%BD%D0%B5%D1%86%D0%B8%D1%8F-1.webp"
+    },
+    "reason-marina": {
+      "variants": {
+        "480": [
+          "/media/reason-marina-480.webp",
+          345
+        ],
+        "800": [
+          "/media/reason-marina-800.webp",
+          575
+        ],
+        "1200": [
+          "/media/reason-marina-1200.webp",
+          862
+        ]
+      },
+      "source": "https://storage.yandexcloud.net/vip-boat-images/%D0%AF%D1%85%D1%82%D0%B0%20%D0%9C%D0%BE%D0%BD%D0%B0%D0%BA%D0%BE%20%D0%B2%20%D0%A1%D0%B0%D0%BD%D0%BA%D1%82-%D0%9F%D0%B5%D1%82%D0%B5%D1%80%D0%B1%D1%83%D1%80%D0%B3%D0%B5%20%E2%80%94%20%D1%81%D0%BE%D0%B2%D1%80%D0%B5%D0%BC%D0%B5%D0%BD%D0%BD%D0%B0%D1%8F%20%D0%BC%D0%BE%D1%82%D0%BE%D1%80%D0%BD%D0%B0%D1%8F%20%D1%8F%D1%85%D1%82%D0%B0%20%D1%83%20%D0%BF%D1%80%D0%B8%D1%87%D0%B0%D0%BB%D0%B0-1.webp"
+    },
+    "reason-salon": {
+      "variants": {
+        "480": [
+          "/media/reason-salon-480.webp",
+          320
+        ],
+        "800": [
+          "/media/reason-salon-800.webp",
+          534
+        ],
+        "1170": [
+          "/media/reason-salon-1170.webp",
+          781
+        ]
+      },
+      "source": "https://storage.yandexcloud.net/vip-boat-images/%D0%A1%D0%B0%D0%BB%D0%BE%D0%BD%20%D1%8F%D1%85%D1%82%D1%8B%20Sunseeker%2070%20%C2%ABPallada%C2%BB%20%E2%80%94%20%D1%80%D0%BE%D1%81%D0%BA%D0%BE%D1%88%D0%BD%D1%8B%D0%B8%CC%86%20%D0%B8%D0%BD%D1%82%D0%B5%D1%80%D1%8C%D0%B5%D1%80%20%D1%81%20%D0%BA%D0%BE%D0%B6%D0%B5%D0%B8%CC%86%20%D0%B8%20%D0%B4%D0%B5%D1%80%D0%B5%D0%B2%D0%BE%D0%BC-13.webp"
+    },
+    "reason-fairline": {
+      "variants": {
+        "480": [
+          "/media/reason-fairline-480.webp",
+          320
+        ],
+        "800": [
+          "/media/reason-fairline-800.webp",
+          533
+        ],
+        "1200": [
+          "/media/reason-fairline-1200.webp",
+          800
+        ]
+      },
+      "source": "https://storage.yandexcloud.net/vip-boat-images/%D0%90%D1%80%D0%B5%D0%BD%D0%B4%D0%B0%20%D1%8F%D1%85%D1%82%D1%8B%20Fairline%2065%20%D0%B4%D0%BB%D1%8F%20VIP-%D0%BF%D1%80%D0%BE%D0%B3%D1%83%D0%BB%D0%BE%D0%BA%20%D0%BF%D0%BE%20%D0%A4%D0%B8%D0%BD%D1%81%D0%BA%D0%BE%D0%BC%D1%83%20%D0%B7%D0%B0%D0%BB%D0%B8%D0%B2%D1%83%203.webp"
+    },
+    "reason-pallada": {
+      "variants": {
+        "480": [
+          "/media/reason-pallada-480.webp",
+          320
+        ],
+        "800": [
+          "/media/reason-pallada-800.webp",
+          533
+        ],
+        "1280": [
+          "/media/reason-pallada-1280.webp",
+          853
+        ],
+        "1600": [
+          "/media/reason-pallada-1600.webp",
+          1067
+        ]
+      },
+      "source": "https://storage.yandexcloud.net/vip-boat-images/%D0%AF%D1%85%D1%82%D0%B0%20Sunseeker%2070%20%C2%ABPallada%C2%BB%20%D0%B2%20%D0%A1%D0%B0%D0%BD%D0%BA%D1%82-%D0%9F%D0%B5%D1%82%D0%B5%D1%80%D0%B1%D1%83%D1%80%D0%B3%D0%B5%20%E2%80%94%20%D0%B2%D0%B8%D0%B4%20%D1%81%20%D0%B1%D0%BE%D1%80%D1%82%D0%B0-25.webp"
+    }
+  }
+}

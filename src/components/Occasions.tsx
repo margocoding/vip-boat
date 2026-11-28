@@ -1,13 +1,10 @@
-"use client";
-
 import Link from "next/link";
 import { extraNav, occasions } from "@/data/site";
 import { Reveal } from "./Reveal";
-import { useEnquire } from "./EnquireProvider";
+import { EnquireButton } from "./EnquireButton";
 
 /** «Для любого повода» + быстрые ссылки на события, круизы и кейтеринг */
 export function Occasions() {
-  const { open } = useEnquire();
   return (
     <section id="events" className="build">
       <Reveal>
@@ -46,9 +43,7 @@ export function Occasions() {
           ))}
         </ul>
         <div className="build__cta">
-          <button className="btn btn--solid" onClick={open}>
-            Подобрать судно
-          </button>
+          <EnquireButton>Подобрать судно</EnquireButton>
         </div>
       </Reveal>
     </section>

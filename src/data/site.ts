@@ -2,8 +2,7 @@
  * Данные взяты с главной страницы vip-boat.ru (сохранённая копия от 22.11.2026).
  * Всё, что можно править руками, лежит здесь и в boats.ts.
  *
- * Фото лодок и плиток категорий — в /public/vip-images (см. README).
- * Фоновые слайды hero подгружаются с облака сайта (storage.yandexcloud.net).
+ * Варианты фотографий из облака сайта сохранены в public/media.
  */
 
 export const site = {
@@ -30,10 +29,6 @@ export const site = {
     inn: "780159592304",
     ogrnip: "326784700085201",
   },
-  heroSlides: [
-    "https://storage.yandexcloud.net/vip-boat-images/atlantis111.jpg",
-    "https://storage.yandexcloud.net/vip-boat-images/arenda-yacht-spb.webp",
-  ],
   heroTitle: ["Аренда", "яхты, катера или теплохода"],
   heroText:
     "Мечтаете о незабываемом отдыхе на воде? Арендуйте катер или яхту для прогулки, праздника или уикенда — всё уже готово для вашего идеального дня. Выбирайте судно и услуги под любой повод.",
@@ -46,18 +41,17 @@ export const topNav: Link[] = [
   { label: "Круизы", href: "/cruises" },
   { label: "Кейтеринг", href: "/catering" },
 ];
-
 /** Категории каталога — те же, что на vip-boat.ru */
 export type Category = Link & { count?: number; image: string };
 
 export const categories: Category[] = [
-  { label: "Аренда яхты в СПб", href: "/arenda-yachty", count: 28, image: "калиса.webp" },
-  { label: "Аренда катера в СПб", href: "/arenda-catera", count: 28, image: "_Maxum.webp" },
-  { label: "Аренда теплохода в СПб", href: "/arenda-teplohoda", count: 21, image: "Аренда теплохода альта 45.webp" },
-  // Новый раздел (на старом сайте его нет). vimg() приводит имена файлов к NFC.
+  { label: "Аренда яхты в СПб", href: "/arenda-yachty", image: "калиса.webp" },
+  { label: "Аренда катера в СПб", href: "/arenda-catera", image: "_Maxum.webp" },
+  { label: "Аренда теплохода в СПб", href: "/arenda-teplohoda", image: "Аренда теплохода альта 45.webp" },
+  // Новый раздел, которого не было на старом сайте.
   { label: "Продажа яхт", href: "/prodazha-yacht", image: "Яхта Princess 68.webp" },
-  { label: "Маршруты", href: "/routes", count: 1, image: "Маршруты по каналам .webp" },
-  { label: "Мероприятия", href: "/events", count: 6, image: "arenda_katera.webp" },
+  { label: "Маршруты", href: "/routes", image: "Маршруты по каналам .webp" },
+  { label: "Мероприятия", href: "/events", image: "arenda_katera.webp" },
 ];
 
 /** Главное меню в шапке (как у образца: аренда / продажа) */
@@ -174,11 +168,4 @@ export const reviews = [
     name: "Marina Klantsataya",
     text: "Все прошло великолепно, очень комфортно, красивая яхта, ребята супер внимательные, спасибо большое за прекрасную прогулку 🫶🏻, обязательно обратимся еще 👌🏻",
   },
-];
-
-export const legalLinks: Link[] = [
-  { label: "Политика конфиденциальности", href: "/privacy-policy" },
-  { label: "Условия заказа", href: "/order-terms" },
-  { label: "Контакты и реквизиты ИП", href: "/contacts" },
-  { label: "Кейтеринг", href: "/catering" },
 ];

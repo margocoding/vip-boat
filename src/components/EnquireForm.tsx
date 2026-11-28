@@ -1,62 +1,73 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { interfaceText, type Language } from "@/data/locale";
+import { rub } from "@/lib/img";
 
-export function EnquireForm({ onDone, light = false }: { onDone?: () => void; light?: boolean }) {
-  const [status, setStatus] = useState<"idle" | "sending" | "ok" | "error">("idle");
+export type EnquireQuote = {
+  vessel: string;
+  date: string;
+  start: string;
+  duration: string;
+  guests: number;
+  options: string[];
+  total: number;
+};
 
-  async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    const form = e.currentTarget;
-    const data = Object.fromEntries(new FormData(form).entries());
-    setStatus("sending");
-    try {
-      const res = await fetch("/api/enquire", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-      if (!res.ok) throw new Error("bad status");
-      setStatus("ok");
-      form.reset();
-      if (onDone) setTimeout(onDone, 2500);
-    } catch {
-      setStatus("error");
-    }
-  }
+const quoteText = {
+  ru: { title: "Смета аренды", trip: "Рейс", guests: "Гостей", options: "Услуги", total: "Предварительно", optional: "необязательно", locale: "ru-RU" },
+  en: { title: "Charter estimate", trip: "Trip", guests: "Guests", options: "Services", total: "Estimated total", optional: "optional", locale: "en-GB" },
+  zh: { title: "租船估算", trip: "航程", guests: "人数", options: "服务", total: "预估总价", optional: "选填", locale: "zh-CN" },
+} as const;
 
-  if (status === "ok") {
+export function EnquireForm({ language = "ru", note, quote }: { language?: Language; note?: string; quote?: EnquireQuote }) {
+  const [complete, setComplete] = useState(false);
+  const confirmation = useRef<HTMLDivElement>(null);
+  const copy = interfaceText[language];
+  const labels = quoteText[language];
+
+  useEffect(() => {
+    if (complete) confirmation.current?.focus();
+  }, [complete]);
+
+  if (complete) {
     return (
-      <div className="form__ok">
-        <strong>Спасибо!</strong>
-        <p>Заявка отправлена. Мы свяжемся с вами в ближайшее время.</p>
+      <div className="form__ok" role="status" ref={confirmation} tabIndex={-1}>
+        <strong>{copy.done}</strong>
+        <p>{copy.doneNote}</p>
+        <button className="link-arrow form__repeat" type="button" onClick={() => setComplete(false)}>
+          {language === "ru" ? "Заполнить ещё раз" : language === "en" ? "Start again" : "重新填写"}
+        </button>
       </div>
     );
   }
-
   return (
-    <form className={`form ${light ? "form--light" : ""}`} onSubmit={onSubmit}>
-      <label>
-        <span>Имя*</span>
-        <input name="name" required autoComplete="name" />
-      </label>
-      <label>
-        <span>Телефон / WhatsApp / Telegram*</span>
-        <input name="phone" required autoComplete="tel" />
-      </label>
-      <label>
-        <span>E-mail</span>
-        <input name="email" type="email" autoComplete="email" />
-      </label>
-      <label>
-        <span>Сообщение</span>
-        <textarea name="message" rows={3} />
-      </label>
-      <button className="btn btn--solid" type="submit" disabled={status === "sending"}>
-        {status === "sending" ? "Отправка…" : "Отправить"}
-      </button>
-      {status === "error" && <p className="form__err">Не удалось отправить. Попробуйте ещё раз.</p>}
-      <p className="form__note">Нажимая «Отправить», вы соглашаетесь с политикой конфиденциальности.</p>
+    <form className="form" method="dialog" onSubmit={(event) => {
+      event.preventDefault();
+      setComplete(true);
+    }}>
+      {quote && (
+        <section className="enquire-quote" aria-label={labels.title}>
+          <div className="enquire-quote__heading">
+            <p className="enquire-quote__vessel">{quote.vessel}</p>
+            <p className="enquire-quote__total"><span>{labels.total}</span><strong>{rub(quote.total)}</strong></p>
+          </div>
+          <dl className="enquire-quote__details">
+            <div><dt>{labels.trip}</dt><dd>
+              <time dateTime={`${quote.date}T${quote.start}`}>{new Intl.DateTimeFormat(labels.locale, {
+                day: "2-digit", month: "2-digit", year: "numeric", timeZone: "UTC",
+              }).format(new Date(quote.date))} · {quote.start}</time> · {quote.duration}
+            </dd></div>
+            <div><dt>{labels.guests}</dt><dd>{quote.guests}</dd></div>
+            <div><dt>{labels.options}</dt><dd>{quote.options.join(" · ")}</dd></div>
+          </dl>
+        </section>
+      )}
+      <p className="form__note">{copy.demo}</p>
+      <label><span>{copy.name}</span><input name="name" type="text" required pattern={".*\\S.*"} maxLength={80} autoComplete="off" /></label>
+      <label><span>{copy.phone}</span><input name="contact" type="text" required pattern={".*\\S.*"} maxLength={120} autoComplete="off" spellCheck={false} /></label>
+      <label><span>{copy.message} <small>{labels.optional}</small></span><textarea name="message" rows={note ? 4 : 2} defaultValue={note} maxLength={800} /></label>
+      <button className="btn btn--solid" type="submit">{copy.send}</button>
     </form>
   );
 }

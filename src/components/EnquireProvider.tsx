@@ -1,42 +1,42 @@
 "use client";
 
-import { createContext, useCallback, useContext, useEffect, useState } from "react";
-import { EnquireForm } from "./EnquireForm";
+import { createContext, useCallback, useContext, useEffect, useRef, useState } from "react";
+import { interfaceText, type Language } from "@/data/locale";
+import { EnquireForm, type EnquireQuote } from "./EnquireForm";
 
-type Ctx = { open: () => void };
-const EnquireContext = createContext<Ctx>({ open: () => {} });
-
+type EnquireRequest = { note?: string; quote?: EnquireQuote };
+const EnquireContext = createContext<{ open: (request?: EnquireRequest, trigger?: HTMLElement | null) => void }>({ open() {} });
 export const useEnquire = () => useContext(EnquireContext);
 
-export function EnquireProvider({ children }: { children: React.ReactNode }) {
-  const [isOpen, setOpen] = useState(false);
-  const open = useCallback(() => setOpen(true), []);
-  const close = useCallback(() => setOpen(false), []);
+export function EnquireProvider({ children, language }: { children: React.ReactNode; language: Language }) {
+  const [request, setRequest] = useState<EnquireRequest | null>(null);
+  const dialog = useRef<HTMLDialogElement>(null);
+  const opener = useRef<HTMLElement | null>(null);
+  const open = useCallback((details: EnquireRequest = {}, trigger?: HTMLElement | null) => {
+    opener.current = trigger ?? null;
+    setRequest(details);
+  }, []);
+  const copy = interfaceText[language];
 
   useEffect(() => {
-    if (!isOpen) return;
-    const onKey = (e: KeyboardEvent) => e.key === "Escape" && close();
-    document.addEventListener("keydown", onKey);
-    document.body.style.overflow = "hidden";
-    return () => {
-      document.removeEventListener("keydown", onKey);
-      document.body.style.overflow = "";
-    };
-  }, [isOpen, close]);
+    if (request && dialog.current && !dialog.current.open) dialog.current.showModal();
+  }, [request]);
+
+  function close() {
+    setRequest(null);
+    opener.current?.focus({ preventScroll: true });
+    opener.current = null;
+  }
 
   return (
     <EnquireContext.Provider value={{ open }}>
       {children}
-      {isOpen && (
-        <div className="modal" role="dialog" aria-modal="true" onClick={close}>
-          <div className="modal__box" onClick={(e) => e.stopPropagation()}>
-            <button className="modal__close" onClick={close} aria-label="Закрыть">
-              ×
-            </button>
-            <h3 className="modal__title">Оставить заявку</h3>
-            <EnquireForm onDone={close} />
-          </div>
-        </div>
+      {request && (
+        <dialog className="enquire-dialog" ref={dialog} aria-labelledby="enquire-title" onClose={close}>
+          <button className="modal__close" type="button" onClick={() => dialog.current?.close()} aria-label={copy.close}>×</button>
+          <h2 className="modal__title" id="enquire-title">{copy.enquiry}</h2>
+          <EnquireForm language={language} note={request.note} quote={request.quote} />
+        </dialog>
       )}
     </EnquireContext.Provider>
   );

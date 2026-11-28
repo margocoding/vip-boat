@@ -3,6 +3,4 @@
  * из сохранённой страницы, см. scripts/import-images.mjs и README).
  * Имена файлов приводятся к NFC, чтобы «ё» и «й» совпадали на любой ОС.
  */
-export const vimg = (name: string) => `/vip-images/${encodeURIComponent(name.normalize("NFC"))}`;
-
 export const rub = (n: number) => n.toLocaleString("ru-RU").replace(/ /g, " ") + " ₽";

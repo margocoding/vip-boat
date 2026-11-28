@@ -1,16 +1,16 @@
 import Link from "next/link";
-import { categories } from "@/data/site";
+import type { Category } from "@/data/site";
 
 /** Полоса категорий сразу под hero (как у образца) */
-export function CategoryStrip() {
+export function CategoryStrip({ categories }: { categories: Category[] }) {
   return (
     <section className="strip" aria-label="Категории">
       <ul className="strip__list">
         {categories.map((c) => (
           <li key={c.href}>
-            <Link href={c.href} className="strip__tab">
+            <Link href={c.href} className="strip__tab" prefetch={false}>
               {c.label}
-              {c.count ? <em>{c.count}</em> : null}
+              {c.count !== undefined && <em>{c.count}</em>}
             </Link>
           </li>
         ))}
