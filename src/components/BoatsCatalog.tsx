@@ -4,6 +4,7 @@ import { BoatCard } from "./rental/BoatCard";
 import { Reveal } from "./Reveal";
 
 export function BoatsCatalog() {
+  const yachts = fleet["arenda-yachty"];
   return (
     <section className="listing listing--dark" id="yachts">
       <div className="listing__head">
@@ -21,8 +22,8 @@ export function BoatsCatalog() {
             гостями, подняться на борт и провести время так, как вы запланировали.
           </p>
           <div className="listing__count">
-            <b>28</b>
-            <span>яхт в каталоге</span>
+            <b>{yachts.length}</b>
+            <span>Яхты в каталоге</span>
           </div>
           <Link className="btn btn--ghost" href="/arenda-yachty">
             Все яхты
@@ -31,7 +32,7 @@ export function BoatsCatalog() {
       </div>
 
       <ul className="cards cards--3">
-        {fleet["arenda-yachty"].map((vessel) => <li key={vessel.slug}><BoatCard vessel={vessel} /></li>)}
+        {yachts.map((vessel) => <li key={vessel.slug}><BoatCard vessel={vessel} /></li>)}
       </ul>
     </section>
   );

@@ -1,21 +1,34 @@
 import { boats } from "./boats";
+import { interfaceText, type Language } from "./locale";
 import type { Boat } from "./types";
 
 export const fleetSections = {
   "arenda-yachty": {
     title: "Аренда яхт",
-    name: "Яхты",
-    description: "Выберите моторную яхту для прогулки с капитаном по Неве или выхода в Финский залив.",
+    nav: "yachts",
+    description: {
+      ru: "Выберите моторную яхту для прогулки с капитаном по Неве или выхода в Финский залив.",
+      en: "Choose a yacht with a skipper for the Neva River and the Gulf of Finland.",
+      zh: "乘坐配备船长的游艇，畅游涅瓦河与芬兰湾。",
+    },
   },
   "arenda-catera": {
     title: "Аренда катеров",
-    name: "Катера",
-    description: "Прогулки по рекам и каналам Петербурга для небольших компаний. Подберите катер по вместимости и цене.",
+    nav: "boats",
+    description: {
+      ru: "Прогулки по рекам и каналам Петербурга для небольших компаний. Подберите катер по вместимости и цене.",
+      en: "Find a motorboat for a small group exploring St Petersburg’s rivers and canals.",
+      zh: "适合小团体的快艇之旅，探索圣彼得堡的河流与运河。",
+    },
   },
   "arenda-teplohoda": {
     title: "Аренда теплоходов",
-    name: "Теплоходы",
-    description: "Теплоходы с открытыми палубами и банкетными залами для свадеб, корпоративов и других событий на воде.",
+    nav: "ships",
+    description: {
+      ru: "Теплоходы с открытыми палубами и банкетными залами для свадеб, корпоративов и других событий на воде.",
+      en: "Explore event boats with open decks and banquet rooms for weddings and corporate receptions.",
+      zh: "适合婚礼、私人庆典及企业活动的宴会船，配有开放式甲板和宴会厅。",
+    },
   },
 } as const;
 
@@ -30,6 +43,16 @@ export type RentalVessel = Boat & {
 
 export function isFleetSection(section: string): section is FleetSection {
   return Object.hasOwn(fleetSections, section);
+}
+
+export function fleetSectionCopy(section: FleetSection, language: Language) {
+  const entry = fleetSections[section];
+  const name = interfaceText[language][entry.nav];
+  return {
+    name,
+    title: language === "ru" ? entry.title : name,
+    description: entry.description[language],
+  };
 }
 
 type ExtraVessel = Pick<RentalVessel, "slug" | "name" | "capacity" | "price"> &
@@ -87,7 +110,7 @@ const yachts: RentalVessel[] = boats.map((boat) => ({
   images: [boat.slug, `${boat.slug}-salon`],
   ...(boat.slug === "azimut-62" ? {
     description: "Моторная яхта длиной 19 метров для компании до 10 гостей. На борту панорамный салон, открытая палуба и каюты. Подойдёт для прогулки по Неве, выхода в залив или камерного праздника.",
-    tourUrl: "https://3dmytour.ru/3d/azimut62s",
+    tourUrl: "https://3dmytour.ru/3d/azimut62s/",
   } : {}),
 }));
 

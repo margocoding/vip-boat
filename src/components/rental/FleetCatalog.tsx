@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { fleet, fleetSections, type FleetSection } from "@/data/rental";
+import { fleet, fleetSectionCopy, fleetSections, type FleetSection } from "@/data/rental";
 import { interfaceText, localized, type Language } from "@/data/locale";
 import { BoatCard } from "./BoatCard";
 import { InteriorHeading } from "./InteriorHeading";
@@ -8,15 +8,12 @@ export type CatalogQuery = Record<string, string | string[] | undefined>;
 const capacities = [10, 30, 50, 100, 150];
 const text = {
   ru: {
-    descriptions: ["Моторные яхты с капитаном для прогулок по Неве и Финскому заливу.", "Катера для небольших компаний и прогулок по рекам и каналам Петербурга.", "Теплоходы для свадеб, корпоративов и других событий на воде."],
     labels: ["Вместимость", "Палубы", "Сортировка", "Все", "До", "гостей", "Однопалубные", "Двухпалубные", "Премиум", "Рекомендуемые", "Сначала дешевле", "Сначала дороже", "Показать", "Сбросить", "Найдено", "По этим параметрам судов нет", "Попробуйте изменить вместимость или убрать фильтр.", "Планировка и рассадка показаны для примера."],
   },
   en: {
-    descriptions: ["Yachts with a skipper for the Neva River and the Gulf of Finland.", "Motorboats for small groups exploring St Petersburg’s rivers and canals.", "Event boats for weddings, private celebrations and corporate receptions."],
     labels: ["Capacity", "Decks", "Sort by", "Any", "Up to", "guests", "Single deck", "Two decks", "Premium", "Recommended", "Price: low to high", "Price: high to low", "Apply", "Reset", "Results", "No vessels match", "Try a different capacity or clear the filters.", "Decks and seating are shown for illustration."],
   },
   zh: {
-    descriptions: ["乘坐配备船长的游艇，畅游涅瓦河与芬兰湾。", "适合小团体的快艇之旅，探索圣彼得堡的河流与运河。", "适合婚礼、私人庆典及企业活动的宴会船。"],
     labels: ["载客量", "甲板", "排序", "不限", "最多", "人", "单层甲板", "双层甲板", "高端", "推荐", "价格从低到高", "价格从高到低", "筛选", "重置", "结果", "暂无符合条件的船只", "请调整载客量或清除筛选条件。", "甲板与座位布局为演示示例。"],
   },
 } as const;
@@ -25,8 +22,7 @@ export function FleetCatalog({ section, query, language }: { section: FleetSecti
   const nav = interfaceText[language];
   const labels = text[language].labels;
   const sections = Object.keys(fleetSections) as FleetSection[];
-  const sectionNames = [nav.yachts, nav.boats, nav.ships];
-  const current = sections.indexOf(section);
+  const copy = fleetSectionCopy(section, language);
   const ships = section === "arenda-teplohoda";
   const capacity = capacities.find(value => String(value) === query.capacity);
   const deck = ships && (query.deck === "1" || query.deck === "2") ? Number(query.deck) : undefined;
@@ -42,15 +38,15 @@ export function FleetCatalog({ section, query, language }: { section: FleetSecti
   return (
     <>
       <InteriorHeading
-        title={language === "ru" ? fleetSections[section].title : sectionNames[current]}
-        subtitle={text[language].descriptions[current]}
+        title={copy.title}
+        subtitle={copy.description}
         home={{ href: localized(language), label: nav.home }}
       />
       <section className="interior-content fleet-content" aria-label={nav.fleet}>
         <nav className="fleet-nav" aria-label={nav.fleet}>
-          {sections.map((item, index) => (
-            <Link key={item} href={localized(language, `/${item}`)} aria-current={item === section ? "page" : undefined}>
-              {sectionNames[index]}
+          {sections.map((item) => (
+            <Link key={item} href={localized(language, `/${item}`)} aria-current={item === section ? "page" : undefined} prefetch={false}>
+              {fleetSectionCopy(item, language).name}
             </Link>
           ))}
         </nav>
@@ -87,7 +83,9 @@ export function FleetCatalog({ section, query, language }: { section: FleetSecti
         </div>
         {items.length ? (
           <ul className="cards cards--3 fleet-grid">
-            {items.map(vessel => <li key={vessel.slug}><BoatCard vessel={vessel} language={language} heading="h2" /></li>)}
+            {items.map((vessel, index) => (
+              <li key={vessel.slug}><BoatCard vessel={vessel} language={language} heading="h2" priority={index === 0} /></li>
+            ))}
           </ul>
         ) : (
           <div className="fleet-empty"><h2>{labels[15]}</h2><p>{labels[16]}</p><Link href={path} className="link-arrow">{labels[13]} →</Link></div>

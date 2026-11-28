@@ -4,7 +4,7 @@ import { createContext, useCallback, useContext, useEffect, useRef, useState } f
 import { interfaceText, type Language } from "@/data/locale";
 import { EnquireForm } from "./EnquireForm";
 
-const EnquireContext = createContext({ open: (_note?: string) => {} });
+const EnquireContext = createContext<{ open: (note?: string) => void }>({ open() {} });
 export const useEnquire = () => useContext(EnquireContext);
 
 export function EnquireProvider({ children, language }: { children: React.ReactNode; language: Language }) {

@@ -13,7 +13,7 @@ export function CategoryTiles() {
       <ul className="tiles__grid">
         {categories.map((c) => (
           <li key={c.href}>
-            <Link href={c.href} className="tile">
+            <Link href={c.href} className="tile" prefetch={false}>
               <Photo src={c.image} className="tile__photo" />
               <span className="tile__shade" />
               <span className="tile__label">

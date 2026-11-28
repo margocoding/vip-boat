@@ -1,14 +1,16 @@
 "use client";
 
 import Link from "next/link";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { categories, extraNav, site, topNav } from "@/data/site";
-import { interfaceText, languages, localized, type Language } from "@/data/locale";
+import { interfaceText, localized, type Language } from "@/data/locale";
+import { LanguageSwitch } from "./LanguageSwitch";
 import { useEnquire } from "./EnquireProvider";
 
 export function Header({ language }: { language: Language }) {
   const [scrolled, setScrolled] = useState(false);
   const [menu, setMenu] = useState(false);
+  const menuDialog = useRef<HTMLDialogElement>(null);
   const { open } = useEnquire();
   const copy = interfaceText[language];
 
@@ -19,16 +21,14 @@ export function Header({ language }: { language: Language }) {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  useEffect(() => {
-    if (!menu) return;
-    document.body.style.overflow = menu ? "hidden" : "";
-    const escape = (event: KeyboardEvent) => { if (event.key === "Escape") setMenu(false); };
-    document.addEventListener("keydown", escape);
-    return () => {
-      document.body.style.overflow = "";
-      document.removeEventListener("keydown", escape);
-    };
-  }, [menu]);
+  function openMenu() {
+    menuDialog.current?.showModal();
+    setMenu(true);
+  }
+
+  function closeMenu() {
+    menuDialog.current?.close();
+  }
 
   const mainThree = categories.slice(0, 3).map((item, index) => ({
     href: localized(language, item.href),
@@ -45,7 +45,8 @@ export function Header({ language }: { language: Language }) {
         <div className="header__inner">
           <button
             className={`burger ${menu ? "burger--open" : ""}`}
-            onClick={() => setMenu((v) => !v)}
+            type="button"
+            onClick={openMenu}
             aria-label={copy.menu}
             aria-expanded={menu}
             aria-controls="site-menu"
@@ -56,26 +57,26 @@ export function Header({ language }: { language: Language }) {
 
           <nav className="header__nav" aria-label={copy.fleet}>
             {mainThree.map((i) => (
-              <Link key={i.href} href={i.href}>
+              <Link key={i.href} href={i.href} prefetch={false}>
                 {i.label}
               </Link>
             ))}
           </nav>
 
-          <Link href={localized(language)} className="logo" onClick={() => setMenu(false)}>
+          <Link href={localized(language)} className="logo" prefetch={false}>
             {site.name}
           </Link>
 
           <div className="header__right">
             {secondary.map((i) => (
-              <Link key={i.href} href={i.href} className="header__top">
+              <Link key={i.href} href={i.href} className="header__top" prefetch={false}>
                 {i.label}
               </Link>
             ))}
             <a className="header__phone" href={site.phoneHref}>
               {site.phone}
             </a>
-            <button className="btn btn--ghost btn--sm header__enquire" aria-label={copy.callback} onClick={() => { setMenu(false); open(); }}>
+            <button className="btn btn--ghost btn--sm header__enquire" type="button" aria-label={copy.callback} onClick={() => open()}>
               <span className="header__enquire-full">{copy.callback}</span>
               <span className="header__enquire-short">{language === "ru" ? "Звонок" : language === "en" ? "Call" : "回电"}</span>
             </button>
@@ -83,34 +84,34 @@ export function Header({ language }: { language: Language }) {
         </div>
       </header>
 
-      <div id="site-menu" className={`menu ${menu ? "menu--open" : ""}`} inert={!menu} aria-hidden={!menu}>
+      <dialog id="site-menu" className="menu" ref={menuDialog} aria-labelledby="site-menu-title" onClose={() => setMenu(false)}>
+        <h2 className="visually-hidden" id="site-menu-title">{copy.menu}</h2>
+        <button className="menu__close btn btn--ghost" type="button" onClick={closeMenu}>{copy.close}</button>
         <div className="menu__inner">
           <div className="menu__col">
-            <h4>{copy.fleet}</h4>
-            {mainThree.map((c) => <Link key={c.href} href={c.href} className="menu__big" onClick={() => setMenu(false)}>{c.label}</Link>)}
+            <h3>{copy.fleet}</h3>
+            {mainThree.map((c) => <Link key={c.href} href={c.href} className="menu__big" onClick={closeMenu} prefetch={false}>{c.label}</Link>)}
           </div>
           <div className="menu__col">
-            <h4>{copy.menu}</h4>
+            <h3>{copy.menu}</h3>
             {(language === "ru" ? [...categories.slice(3), ...topNav, ...extraNav] : secondary).map((c) => (
-              <Link key={c.href} href={c.href} onClick={() => setMenu(false)}>
+              <Link key={c.href} href={c.href} onClick={closeMenu} prefetch={false}>
                 {c.label}
               </Link>
             ))}
           </div>
           <div className="menu__col">
-            <h4>{copy.contact}</h4>
+            <h3>{copy.contact}</h3>
             <a href={site.phoneHref}>{site.phone}</a>
             {site.socials.map((s) => (
               <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer">
                 {s.label}
               </a>
             ))}
-            <div className="locale-switch">
-              {languages.map((item) => <a key={item} href={localized(item)} hrefLang={item} lang={item} aria-current={item === language ? "true" : undefined}>{item.toUpperCase()}</a>)}
-            </div>
+            <LanguageSwitch language={language} />
           </div>
         </div>
-      </div>
+      </dialog>
     </>
   );
 }

@@ -4,8 +4,12 @@
 
 ## Запуск
 
+Для сборки и проверок используйте Node.js 22.18 или новее.
+
 ```sh
 npm ci
+npm run lint
+npm test
 npm run dev
 npm run build
 npm start

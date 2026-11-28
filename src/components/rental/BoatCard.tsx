@@ -3,10 +3,11 @@ import type { RentalVessel } from "@/data/rental";
 import { rub } from "@/lib/img";
 import { Photo } from "../Photo";
 
-export function BoatCard({ vessel, language = "ru", heading: Heading = "h3" }: {
+export function BoatCard({ vessel, language = "ru", heading: Heading = "h3", priority = false }: {
   vessel: RentalVessel;
   language?: "ru" | "en" | "zh";
   heading?: "h2" | "h3";
+  priority?: boolean;
 }) {
   const { capacity, configuration, href, images, length, name, price, priceOld } = vessel;
   const copy = {
@@ -17,7 +18,7 @@ export function BoatCard({ vessel, language = "ru", heading: Heading = "h3" }: {
   return (
     <Link href={language === "ru" ? href : `/${language}${href}`} prefetch={false} className="card fleet-card">
       <div className="card__media">
-        <Photo src={images[0]} className="fleet-card__exterior" />
+        <Photo src={images[0]} className="fleet-card__exterior" priority={priority} />
         {images[1] && <Photo src={images[1]} className="fleet-card__interior" />}
       </div>
       <div className="card__body">

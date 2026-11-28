@@ -8,7 +8,7 @@ export function CategoryStrip() {
       <ul className="strip__list">
         {categories.map((c) => (
           <li key={c.href}>
-            <Link href={c.href} className="strip__tab">
+            <Link href={c.href} className="strip__tab" prefetch={false}>
               {c.label}
               {c.count ? <em>{c.count}</em> : null}
             </Link>

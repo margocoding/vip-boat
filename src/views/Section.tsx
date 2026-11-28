@@ -2,17 +2,15 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { site } from "@/data/site";
 import { editorial, documents, isEditorialSection } from "@/data/editorial";
-import { fleetSections, isFleetSection } from "@/data/rental";
 import { interfaceText, localized, type Language } from "@/data/locale";
 import { pageMetadata } from "@/lib/metadata";
-import { FleetCatalog, type CatalogQuery } from "@/components/rental/FleetCatalog";
 import { EditorialPage } from "@/components/rental/EditorialPage";
 import { InteriorHeading } from "@/components/rental/InteriorHeading";
 import { EnquireButton } from "@/components/EnquireButton";
 import { SaleSection } from "@/components/SaleSection";
 import { Photo } from "@/components/Photo";
 
-export type SectionProps = { params: Promise<{ section: string }>; searchParams: Promise<CatalogQuery> };
+export type SectionProps = { params: Promise<{ section: string }> };
 
 const supplementary = {
   "prodazha-yacht": { title: "Продажа яхт", description: "Подбор яхты, организация осмотра и сопровождение сделки." },
@@ -24,16 +22,18 @@ function isSupplementary(value: string): value is keyof typeof supplementary {
   return Object.hasOwn(supplementary, value);
 }
 
+export function sectionParams(language: Language) {
+  const sections = [...Object.keys(editorial), "contacts"];
+  if (language === "ru") sections.push(...Object.keys(supplementary), ...Object.keys(documents));
+  return sections.map((section) => ({ section }));
+}
+
 export async function sectionMetadata(language: Language, params: SectionProps["params"]) {
   const { section } = await params;
   const copy = interfaceText[language];
   let title: string;
   let description: string;
-  if (isFleetSection(section)) {
-    const names = { "arenda-yachty": copy.yachts, "arenda-catera": copy.boats, "arenda-teplohoda": copy.ships };
-    title = language === "ru" ? fleetSections[section].title : names[section];
-    description = language === "ru" ? fleetSections[section].description : `${title} · Vip Boat · St Petersburg`;
-  } else if (isEditorialSection(section)) {
+  if (isEditorialSection(section)) {
     title = editorial[section].title[language];
     description = editorial[section].description[language];
   } else if (section === "contacts") {
@@ -42,14 +42,16 @@ export async function sectionMetadata(language: Language, params: SectionProps["
   } else if (language === "ru" && isSupplementary(section)) {
     ({ title, description } = supplementary[section]);
   } else if (language === "ru" && Object.hasOwn(documents, section)) {
-    return { ...pageMetadata(language, `/${section}`, documents[section], "Документы Vip Boat", false), robots: { index: false, follow: true } };
-  } else return {};
-  return pageMetadata(language, `/${section}`, `${title} | Vip Boat`, description, !isSupplementary(section));
+    return pageMetadata(language, `/${section}`, documents[section], "Документы Vip Boat", { multilingual: false, draft: true });
+  } else notFound();
+  return pageMetadata(language, `/${section}`, `${title} | Vip Boat`, description, {
+    multilingual: !isSupplementary(section),
+    draft: section === "news",
+  });
 }
 
-export default async function Section({ language, params, searchParams }: SectionProps & { language: Language }) {
+export default async function Section({ language, params }: SectionProps & { language: Language }) {
   const { section } = await params;
-  if (isFleetSection(section)) return <FleetCatalog section={section} query={await searchParams} language={language} />;
   if (isEditorialSection(section)) return <EditorialPage section={section} language={language} />;
   const copy = interfaceText[language];
   const home = { href: localized(language), label: copy.home };
@@ -69,7 +71,6 @@ export default async function Section({ language, params, searchParams }: Sectio
       <InteriorHeading title={documents[section]} />
       <div className="interior-content document-page">
         <p>Место для согласованного текста документа. Сейчас на сайте представлена демонстрационная форма заявки.</p>
-        {section === "privacy-policy" && <a className="plain-link" href="https://vip-boat.ru/privacy-policy">Политика действующего сайта ↗</a>}
       </div>
     </>
   );
@@ -79,7 +80,7 @@ export default async function Section({ language, params, searchParams }: Sectio
     <>
       <InteriorHeading title={page.title} subtitle={page.description} />
       {section === "prodazha-yacht" ? <SaleSection /> : section === "news" ? (
-        <div className="interior-content"><a className="link-arrow" href="https://vip-boat.ru/news">Читать новости Vip Boat ↗</a></div>
+        <div className="interior-content"><p>Материалы для раздела готовятся.</p></div>
       ) : (
         <div className="interior-content">
           <article className="editorial-feature">

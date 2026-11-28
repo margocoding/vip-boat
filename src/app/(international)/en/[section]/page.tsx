@@ -1,4 +1,10 @@
-import Section, { sectionMetadata, type SectionProps } from "@/views/Section";
+import Section, { sectionMetadata, sectionParams, type SectionProps } from "@/views/Section";
+
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return sectionParams("en");
+}
 
 export function generateMetadata({ params }: Pick<SectionProps, "params">) {
   return sectionMetadata("en", params);

@@ -12,6 +12,12 @@ export const cateringOptions = [
 
 export type CateringOption = typeof cateringOptions[number]["id"];
 export type ExtraId = typeof rentalExtras[number]["id"];
+export type RentalPricing = {
+  price: number;
+  capacity: number;
+  configuration?: { banquet?: number; buffet?: number };
+};
+
 export type RentalSelection = {
   date: string;
   hour: number;
@@ -20,6 +26,11 @@ export type RentalSelection = {
   catering: CateringOption;
   extras: ExtraId[];
 };
+
+export function cateringCapacity(vessel: RentalPricing, format: CateringOption) {
+  if (format === "none") return vessel.capacity;
+  return Math.min(vessel.capacity, vessel.configuration?.[format] ?? vessel.capacity);
+}
 
 // Prototype coefficients inspired by the tariff table, separate from published base rates.
 function rate(base: number, hour: Date) {
@@ -30,14 +41,25 @@ function rate(base: number, hour: Date) {
   return Math.round(base * season * weekend * evening);
 }
 
-export function estimateRental(base: number, selection: RentalSelection) {
+export function estimateRental(vessel: RentalPricing, selection: RentalSelection) {
   const { date, hour, hours, guests } = selection;
+  if (
+    !/^\d{4}-\d{2}-\d{2}$/.test(date) ||
+    !Number.isInteger(hour) || hour < 0 || hour > 23 ||
+    !Number.isInteger(hours) || hours < 1 || hours > 12 ||
+    !Number.isInteger(guests) || guests < 1 || guests > cateringCapacity(vessel, selection.catering)
+  ) return null;
+
   const firstHour = new Date(`${date}T00:00:00.000Z`);
-  if (!date || Number.isNaN(firstHour.getTime())) return null;
+  if (!Number.isFinite(firstHour.getTime()) || firstHour.toISOString().slice(0, 10) !== date) return null;
+  const catering = cateringOptions.find(({ id }) => id === selection.catering);
+  if (!catering) return null;
+
   firstHour.setUTCHours(hour);
-  const hourlyRates = Array.from({ length: hours }, (_, i) => rate(base, new Date(firstHour.getTime() + i * 3600000)));
-  const hire = hourlyRates.reduce((total, value) => total + value, 0);
-  const catering = cateringOptions.find(({ id }) => id === selection.catering)!;
+  let hire = 0;
+  for (let offset = 0; offset < hours; offset++) {
+    hire += rate(vessel.price, new Date(firstHour.getTime() + offset * 3600000));
+  }
   const food = Math.max(catering.minimum, catering.perGuest * guests);
   const extras = rentalExtras.filter(({ id }) => selection.extras.includes(id));
   const total = hire + food + extras.reduce((sum, { price }) => sum + price, 0);

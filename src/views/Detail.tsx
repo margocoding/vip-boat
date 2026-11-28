@@ -24,14 +24,20 @@ export async function detailMetadata(language: Language, params: DetailProps["pa
       const description = language === "ru" ? boat.seo?.description || vesselDescription(boat) :
         language === "en" ? `${boat.name}. Private charter in St Petersburg for up to ${boat.capacity} guests.` :
           `${boat.name}，圣彼得堡私人包船，最多可容纳 ${boat.capacity} 位客人。`;
-      return pageMetadata(language, path, (language === "ru" && boat.seo?.title) || `${boat.name} | Vip Boat`, description);
+      return pageMetadata(language, path, (language === "ru" && boat.seo?.title) || `${boat.name} | Vip Boat`, description, {
+        image: { asset: boat.images[0], alt: boat.name },
+      });
     }
   }
   if (isEditorialSection(section)) {
     const item = editorial[section].items.find(entry => entry.slug === slug);
-    if (item) return pageMetadata(language, path, `${item.name[language]} | Vip Boat`, item.description[language]);
+    if (item) {
+      return pageMetadata(language, path, `${item.name[language]} | Vip Boat`, item.description[language], {
+        image: { asset: item.image, alt: item.name[language] },
+      });
+    }
   }
-  return {};
+  notFound();
 }
 
 export default async function Detail({ language, params }: DetailProps & { language: Language }) {

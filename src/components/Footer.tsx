@@ -1,8 +1,9 @@
 import Link from "next/link";
 import { categories, extraNav, site, topNav } from "@/data/site";
 import { documents } from "@/data/editorial";
-import { interfaceText, languages, localized, type Language } from "@/data/locale";
+import { interfaceText, localized, type Language } from "@/data/locale";
 import { EnquireForm } from "./EnquireForm";
+import { LanguageSwitch } from "./LanguageSwitch";
 
 export function Footer({ language }: { language: Language }) {
   const copy = interfaceText[language];
@@ -46,7 +47,7 @@ export function Footer({ language }: { language: Language }) {
         <div>
           <h3>{copy.fleet}</h3>
           {catalogue.map((c) => (
-            <Link key={c.href} href={c.href}>
+            <Link key={c.href} href={c.href} prefetch={false}>
               {c.label}
             </Link>
           ))}
@@ -54,7 +55,7 @@ export function Footer({ language }: { language: Language }) {
         <div>
           <h3>{copy.menu}</h3>
           {pages.map((c) => (
-            <Link key={c.href} href={c.href}>
+            <Link key={c.href} href={c.href} prefetch={false}>
               {c.label}
             </Link>
           ))}
@@ -62,7 +63,7 @@ export function Footer({ language }: { language: Language }) {
         {language === "ru" && <div>
           <h3>Документы</h3>
           {Object.entries(documents).filter(([slug]) => slug !== "ai-content-agreement").map(([slug, title]) => (
-            <Link key={slug} href={`/${slug}`}>{title}</Link>
+            <Link key={slug} href={`/${slug}`} prefetch={false}>{title}</Link>
           ))}
         </div>}
       </div>
@@ -70,10 +71,8 @@ export function Footer({ language }: { language: Language }) {
       <div className="footer__legal">
         <p>© {site.name}, {new Date().getFullYear()}.</p>
         {language === "ru" && <p>{site.legal.owner} (ИНН {site.legal.inn}, ОГРНИП {site.legal.ogrnip})</p>}
-        {language === "ru" && <p><Link href="/ai-content-agreement">Информация об использовании ИИ</Link></p>}
-        <nav className="locale-switch" aria-label="Language">
-          {languages.map(item => <a key={item} href={localized(item)} hrefLang={item} lang={item} aria-current={item === language ? "true" : undefined}>{item.toUpperCase()}</a>)}
-        </nav>
+        {language === "ru" && <p><Link href="/ai-content-agreement" prefetch={false}>Информация об использовании ИИ</Link></p>}
+        <LanguageSwitch language={language} />
       </div>
     </footer>
   );

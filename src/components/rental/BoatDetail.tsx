@@ -1,4 +1,4 @@
-import { fleet, fleetSections, vesselDescription, type RentalVessel } from "@/data/rental";
+import { fleet, fleetSectionCopy, vesselDescription, type RentalVessel } from "@/data/rental";
 import { interfaceText, localized, type Language } from "@/data/locale";
 import { rub } from "@/lib/img";
 import { Photo } from "../Photo";
@@ -10,7 +10,7 @@ import { VirtualTour } from "./VirtualTour";
 export function BoatDetail({ vessel, language }: { vessel: RentalVessel; language: Language }) {
   const { name, section, images, length, capacity, price, amenities, configuration } = vessel;
   const nav = interfaceText[language];
-  const sectionNames = { "arenda-yachty": nav.yachts, "arenda-catera": nav.boats, "arenda-teplohoda": nav.ships };
+  const sectionName = fleetSectionCopy(section, language).name;
   const labels = {
     ru: { gallery: "Фото судна", exterior: "Общий вид", interior: "На борту", capacity: "Вместимость", length: "Длина", cost: "Аренда от", unit: "час", guests: "гостей", about: "На борту", estimate: "Рассчитать аренду", similar: "Другие суда", specs: ["Фуршет", "Банкет", "Столы", "Стулья"] },
     en: { gallery: "Vessel photos", exterior: "Exterior", interior: "On board", capacity: "Capacity", length: "Length", cost: "Charter from", unit: "hour", guests: "guests", about: "On board", estimate: "Calculate a quote", similar: "Other vessels", specs: ["Reception", "Banquet", "Tables", "Chairs"] },
@@ -23,7 +23,7 @@ export function BoatDetail({ vessel, language }: { vessel: RentalVessel; languag
   };
   return (
     <>
-      <InteriorHeading title={name} parent={{ href: localized(language, `/${section}`), label: language === "ru" ? fleetSections[section].name : sectionNames[section] }}
+      <InteriorHeading title={name} parent={{ href: localized(language, `/${section}`), label: sectionName }}
         home={{ href: localized(language), label: nav.home }} />
       <div className="interior-content">
         <div className="vessel-overview">
@@ -54,7 +54,7 @@ export function BoatDetail({ vessel, language }: { vessel: RentalVessel; languag
             <a className="btn btn--solid" href="#estimate">{labels.estimate} ↓</a>
           </div>
         </div>
-        <RentalEstimate vessel={{ name, price, capacity }} language={language} />
+        <RentalEstimate vessel={{ name, price, capacity, configuration }} language={language} />
         {vessel.tourUrl && <VirtualTour url={vessel.tourUrl} name={name} language={language} />}
         <section className="related-vessels">
           <h2 className="h2">{labels.similar}</h2>
